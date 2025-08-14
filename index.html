@@ -201,6 +201,30 @@
             margin-bottom: 8px;
         }
 
+        /* CV Download Section */
+        .cv-download {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .cv-download h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .cv-download p {
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* Skills */
         .skills-list {
             display: flex;
@@ -262,6 +286,16 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(58, 134, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(58, 134, 255, 0.1);
         }
 
         /* Footer */
@@ -529,6 +563,17 @@
                 </div>
             </div>
         </section>
+
+        <!-- Sezione CV Download -->
+        <section id="cv">
+            <div class="cv-download">
+                <h3 data-i18n="cv.title">Curriculum Vitae</h3>
+                <p data-i18n="cv.description">Scarica il mio CV completo in formato PDF per maggiori dettagli sulla mia formazione ed esperienza professionale.</p>
+                <a href="CVE_Marco_De_Luca.pdf" class="btn btn-primary" download>
+                    <i class="fas fa-download"></i> <span data-i18n="cv.button">Scarica CV</span>
+                </a>
+            </div>
+        </section>
         
         <section id="contact" style="text-align: center;">
             <div class="section-header">
@@ -562,14 +607,12 @@
     </footer>
 
     <script>
+        // Imposta il tema chiaro di default
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        // Check for saved theme or use preferred color scheme
-        const currentTheme = localStorage.getItem('theme') || 
-                            (prefersDarkScheme.matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', currentTheme);
         
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -583,9 +626,8 @@
                 '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         });
         
-        // Set initial icon
-        themeToggle.innerHTML = currentTheme === 'dark' ? 
-            '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        // Set initial icon (moon per tema chiaro)
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         
         // Language Toggle
         const languageToggle = document.getElementById('languageToggle');
@@ -625,6 +667,9 @@
                 'languages.lang1.level': 'Madrelingua',
                 'languages.lang2': 'Inglese',
                 'languages.lang3': 'Spagnolo',
+                'cv.title': 'Curriculum Vitae',
+                'cv.description': 'Scarica il mio CV completo in formato PDF per maggiori dettagli sulla mia formazione ed esperienza professionale.',
+                'cv.button': 'Scarica CV',
                 'contact.title': 'Contattami',
                 'contact.email': 'Email',
                 'contact.phone': 'Telefono',
@@ -663,6 +708,9 @@
                 'languages.lang1.level': 'Native',
                 'languages.lang2': 'English',
                 'languages.lang3': 'Spanish',
+                'cv.title': 'Curriculum Vitae',
+                'cv.description': 'Download my complete CV in PDF format for more details about my education and professional experience.',
+                'cv.button': 'Download CV',
                 'contact.title': 'Contact Me',
                 'contact.email': 'Email',
                 'contact.phone': 'Phone',
@@ -673,10 +721,6 @@
         languageToggle.addEventListener('click', () => {
             currentLang = currentLang === 'it' ? 'en' : 'it';
             updateContent(currentLang);
-            
-            // Update icon
-            languageToggle.innerHTML = currentLang === 'it' ? 
-                '<i class="fas fa-language"></i>' : '<i class="fas fa-language"></i>';
         });
         
         function updateContent(lang) {
