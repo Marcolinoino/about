@@ -1,81 +1,257 @@
-<div class="terminal" id="advancedTerminal">
-    <div class="terminal-header">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-        <span class="terminal-title">portfolio-cli</span>
+<!-- Aggiungi questa sezione dove preferisci nel tuo HTML -->
+<section id="terminal">
+    <div class="section-header">
+        <h2>Terminal</h2>
+        <p>Interagisci con il mio terminale virtuale</p>
     </div>
-    <div class="terminal-body" id="terminalOutput"></div>
-    <div class="terminal-input">
-        <span class="prompt">$</span>
-        <input type="text" id="terminalInput" autocomplete="off" spellcheck="false">
+    
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+            </div>
+            <div class="terminal-title">marco@portfolio: ~</div>
+        </div>
+        <div class="terminal-body" id="terminalOutput">
+            <div class="terminal-line">
+                <span class="terminal-user">marco@portfolio</span>
+                <span class="terminal-path">~</span>
+                <span class="terminal-prompt">$</span>
+                <span class="terminal-command">help</span>
+            </div>
+            <div class="terminal-response">
+                Benvenuto nel terminale interattivo!<br>
+                Comandi disponibili:<br>
+                - <span class="terminal-cmd">about</span>: Mostra info su di me<br>
+                - <span class="terminal-cmd">skills</span>: Le mie competenze<br>
+                - <span class="terminal-cmd">contact</span>: Info di contatto<br>
+                - <span class="terminal-cmd">clear</span>: Pulisci il terminale<br><br>
+                <span class="terminal-user">marco@portfolio</span>
+                <span class="terminal-path">~</span>
+                <span class="terminal-prompt">$</span>
+                <span class="terminal-cursor">_</span>
+            </div>
+        </div>
+        <div class="terminal-input">
+            <span class="terminal-user">marco@portfolio</span>
+            <span class="terminal-path">~</span>
+            <span class="terminal-prompt">$</span>
+            <input type="text" id="terminalInput" autocomplete="off" spellcheck="false">
+        </div>
     </div>
-</div>
+</section>
 
+<!-- Aggiungi questo stile CSS -->
+<style>
+    .terminal-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--card);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+    }
+    
+    .terminal-header {
+        background: #e4e3e5;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .terminal-buttons {
+        display: flex;
+        gap: 6px;
+    }
+    
+    .terminal-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    
+    .terminal-btn.red { background: #ff5f56; }
+    .terminal-btn.yellow { background: #ffbd2e; }
+    .terminal-btn.green { background: #27c93f; }
+    
+    .terminal-title {
+        flex: 1;
+        text-align: center;
+        font-family: monospace;
+        font-size: 0.8rem;
+        color: #333;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        height: 300px;
+        overflow-y: auto;
+        background: #1e1e1e;
+        color: #f0f0f0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .terminal-line {
+        margin-bottom: 5px;
+    }
+    
+    .terminal-user {
+        color: #7eda28;
+    }
+    
+    .terminal-path {
+        color: #4878c0;
+    }
+    
+    .terminal-prompt {
+        color: #dddddd;
+        margin: 0 5px;
+    }
+    
+    .terminal-command {
+        color: #ffffff;
+    }
+    
+    .terminal-response {
+        margin-bottom: 15px;
+    }
+    
+    .terminal-cmd {
+        color: #7eda28;
+        font-weight: bold;
+    }
+    
+    .terminal-cursor {
+        animation: blink 1s infinite;
+    }
+    
+    .terminal-input {
+        display: flex;
+        align-items: center;
+        padding: 8px 15px;
+        background: #252526;
+        border-top: 1px solid #333;
+    }
+    
+    .terminal-input input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        font-family: 'Courier New', monospace;
+        font-size: 0.95rem;
+        outline: none;
+    }
+    
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
+
+<!-- Aggiungi questo script per l'interattività -->
 <script>
-const terminal = {
-    config: {
-        user: "visitor",
-        host: "portfolio",
-        lang: "it"
-    },
-    commands: {
-        help: () => Object.keys(this.commands).join(", "),
-        clear: () => { terminal.clear(); return ""; },
-        about: () => `Ciao sono Marco, sviluppatore Java e security specialist...`,
-        theme: (args) => {
-            const themes = {
-                dark: { bg: "#1e1e1e", text: "#f8f8f8" },
-                light: { bg: "#f8f8f8", text: "#1e1e1e" },
-                matrix: { bg: "#000", text: "#0f0" }
-            };
-            return terminal.setTheme(themes[args[0]] || themes.dark);
-        }
-    },
-    init() {
-        this.output = document.getElementById('terminalOutput');
-        this.input = document.getElementById('terminalInput');
+    document.addEventListener('DOMContentLoaded', function() {
+        const terminalOutput = document.getElementById('terminalOutput');
+        const terminalInput = document.getElementById('terminalInput');
         
-        this.input.addEventListener('keydown', (e) => {
+        const commands = {
+            'about': `
+                <strong>Marco De Luca</strong><br>
+                Sviluppatore Java | Security Specialist<br>
+                Laureando in Sicurezza Informatica<br>
+                Esperto in sviluppo backend e sicurezza applicativa
+            `,
+            'skills': `
+                <strong>Competenze Tecniche:</strong><br>
+                - Linguaggi: Java, Python, JavaScript<br>
+                - Framework: Spring Boot, Angular<br>
+                - Database: MySQL, MongoDB<br>
+                - Sicurezza: OWASP, Crittografia
+            `,
+            'contact': `
+                <strong>Contatti:</strong><br>
+                Email: marcodeluca99@gmail.com<br>
+                Telefono: (+39) 328 648 3074<br>
+                LinkedIn: <a href="#" style="color: #7eda28;">linkedin.com/in/marco-de-luca</a>
+            `,
+            'help': `
+                <strong>Comandi disponibili:</strong><br>
+                - about: Mostra info su di me<br>
+                - skills: Le mie competenze<br>
+                - contact: Info di contatto<br>
+                - clear: Pulisci il terminale
+            `,
+            'clear': ''
+        };
+        
+        terminalInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                this.processCommand(this.input.value);
-                this.input.value = '';
+                const command = terminalInput.value.trim().toLowerCase();
+                terminalInput.value = '';
+                
+                // Aggiungi il comando all'output
+                const commandLine = document.createElement('div');
+                commandLine.className = 'terminal-line';
+                commandLine.innerHTML = `
+                    <span class="terminal-user">marco@portfolio</span>
+                    <span class="terminal-path">~</span>
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-command">${command}</span>
+                `;
+                terminalOutput.appendChild(commandLine);
+                
+                // Processa il comando
+                if (commands[command] !== undefined) {
+                    if (command === 'clear') {
+                        terminalOutput.innerHTML = '';
+                    } else {
+                        const response = document.createElement('div');
+                        response.className = 'terminal-response';
+                        response.innerHTML = commands[command];
+                        terminalOutput.appendChild(response);
+                        
+                        // Aggiungi nuova riga di input
+                        const newInputLine = document.createElement('div');
+                        newInputLine.className = 'terminal-line';
+                        newInputLine.innerHTML = `
+                            <span class="terminal-user">marco@portfolio</span>
+                            <span class="terminal-path">~</span>
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-cursor">_</span>
+                        `;
+                        terminalOutput.appendChild(newInputLine);
+                    }
+                } else {
+                    const response = document.createElement('div');
+                    response.className = 'terminal-response';
+                    response.innerHTML = `Comando non trovato: ${command}. Digita 'help' per la lista dei comandi.`;
+                    terminalOutput.appendChild(response);
+                    
+                    // Aggiungi nuova riga di input
+                    const newInputLine = document.createElement('div');
+                    newInputLine.className = 'terminal-line';
+                    newInputLine.innerHTML = `
+                        <span class="terminal-user">marco@portfolio</span>
+                        <span class="terminal-path">~</span>
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-cursor">_</span>
+                    `;
+                    terminalOutput.appendChild(newInputLine);
+                }
+                
+                // Scroll automatico
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
             }
         });
         
-        this.printWelcome();
-    },
-    printWelcome() {
-        this.print(`
-        Benvenuto nel mio portfolio interattivo!
-        Digita 'help' per la lista dei comandi disponibili.
-        `);
-        this.printPrompt();
-    },
-    printPrompt() {
-        this.print(`\n${this.config.user}@${this.config.host}:~$ `, false);
-    },
-    print(text, newline = true) {
-        const p = document.createElement('p');
-        p.textContent = (newline ? '\n' : '') + text;
-        this.output.appendChild(p);
-        this.output.scrollTop = this.output.scrollHeight;
-    },
-    processCommand(cmd) {
-        const [command, ...args] = cmd.split(' ');
-        const output = this.commands[command]?.(args) || `Comando non trovato: ${command}`;
-        this.print(output);
-        this.printPrompt();
-    },
-    clear() {
-        this.output.innerHTML = '';
-    },
-    setTheme(theme) {
-        document.querySelector('.terminal').style.backgroundColor = theme.bg;
-        document.querySelector('.terminal').style.color = theme.text;
-        return `Tema impostato a ${theme}`;
-    }
-};
-
-terminal.init();
+        // Focus automatico sull'input
+        terminalInput.focus();
+    });
 </script>
