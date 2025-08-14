@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio professionale di Marco De Luca, Sviluppatore Java e Security Specialist">
+    <meta name="keywords" content="sviluppatore java, security specialist, portfolio, curriculum, marco de luca">
     <title>Marco De Luca | Sviluppatore & Security Specialist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #3a86ff;
+            --primary-light: rgba(58, 134, 255, 0.1);
             --secondary: #8338ec;
             --text: #2b2d42;
+            --text-light: #6c757d;
             --bg: #f8f9fa;
             --card: #ffffff;
             --border: #e9ecef;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --success: #28a745;
+            --error: #dc3545;
         }
 
         [data-theme="dark"] {
             --primary: #4e9eff;
+            --primary-light: rgba(78, 158, 255, 0.1);
             --secondary: #9d5cff;
             --text: #e9ecef;
+            --text-light: #adb5bd;
             --bg: #121212;
             --card: #1e1e1e;
             --border: #333;
@@ -31,15 +42,14 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            transition: background-color 0.3s ease, color 0.2s ease;
+            transition: background-color 0.3s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
-        
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
         
         body {
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
         
         .container {
@@ -70,11 +80,13 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: var(--shadow);
+            transition: all 0.2s ease;
         }
 
         .toggle-btn:hover {
             background: var(--primary);
             color: white;
+            transform: scale(1.1);
         }
 
         /* Header */
@@ -82,16 +94,33 @@
             padding: 100px 0 60px;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.1) 0%, rgba(131, 56, 236, 0.1) 100%);
+            z-index: -1;
         }
         
         .profile-img {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--primary);
             margin-bottom: 24px;
-            box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.2);
+            box-shadow: 0 0 0 8px rgba(58, 134, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 8px rgba(58, 134, 255, 0.2);
         }
         
         h1 {
@@ -129,11 +158,87 @@
             background: var(--card);
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(58, 134, 255, 0.2);
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            z-index: 90;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Sections */
         section {
-            padding: 60px 0;
+            padding: 80px 0;
+            position: relative;
         }
         
         .section-header {
@@ -173,6 +278,29 @@
             padding: 30px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transition: height 0.3s ease;
+        }
+
+        .card:hover::before {
+            height: 100%;
         }
 
         .card h3 {
@@ -190,6 +318,7 @@
 
         .card p {
             margin-bottom: 16px;
+            color: var(--text-light);
         }
 
         .card ul {
@@ -199,23 +328,38 @@
 
         .card li {
             margin-bottom: 8px;
+            color: var(--text-light);
         }
 
         /* CV Download Section */
         .cv-download {
             text-align: center;
             margin-top: 40px;
-            padding: 30px;
+            padding: 40px;
             background: var(--card);
             border-radius: 12px;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.05) 0%, rgba(131, 56, 236, 0.05) 100%);
+            z-index: 0;
         }
 
         .cv-download h3 {
             font-size: 1.5rem;
             margin-bottom: 16px;
             color: var(--primary);
+            position: relative;
         }
 
         .cv-download p {
@@ -223,9 +367,11 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            color: var(--text-light);
         }
 
-        /* Terminal Section - CODICE MIGLIORATO */
+        /* Terminal Section */
         .terminal-container {
             max-width: 800px;
             margin: 40px auto 0;
@@ -234,10 +380,16 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .terminal-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .terminal-header {
-            background: #e4e3e5;
+            background: var(--border);
             padding: 8px 12px;
             display: flex;
             align-items: center;
@@ -253,6 +405,7 @@
             height: 12px;
             border-radius: 50%;
             display: inline-block;
+            cursor: pointer;
         }
         
         .terminal-btn.red { background: #ff5f56; }
@@ -264,7 +417,7 @@
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
-            color: #333;
+            color: var(--text);
         }
         
         .terminal-body {
@@ -280,18 +433,14 @@
         
         .terminal-line {
             margin-bottom: 5px;
-            white-space: pre-wrap;
-            word-break: break-word;
         }
         
         .terminal-user {
             color: #7eda28;
-            font-weight: bold;
         }
         
         .terminal-path {
             color: #4878c0;
-            font-weight: bold;
         }
         
         .terminal-prompt {
@@ -305,7 +454,11 @@
         
         .terminal-response {
             margin-bottom: 15px;
-            color: #cccccc;
+        }
+        
+        .terminal-cmd {
+            color: #7eda28;
+            font-weight: bold;
         }
         
         .terminal-cursor {
@@ -332,12 +485,19 @@
         }
 
         .skill-tag {
-            background: rgba(58, 134, 255, 0.1);
+            background: var(--primary-light);
             color: var(--primary);
             padding: 6px 12px;
             border-radius: 50px;
             font-size: 0.85rem;
             border: 1px solid rgba(58, 134, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
         }
 
         /* Progress bars */
@@ -362,6 +522,7 @@
             height: 100%;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             border-radius: 3px;
+            transition: width 1s ease;
         }
 
         /* Buttons */
@@ -374,16 +535,126 @@
             font-weight: 500;
             text-decoration: none;
             transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 1;
         }
 
         .btn-primary {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
+            border: none;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 6px 16px rgba(58, 134, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline::before {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            opacity: 0;
+        }
+
+        .btn-outline:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(58, 134, 255, 0.1);
+        }
+
+        .btn-outline:hover::before {
+            opacity: 1;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+            display: block;
         }
 
         /* Footer */
@@ -422,10 +693,57 @@
         }
 
         .copyright {
-            color: var(--text);
-            opacity: 0.8;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 80;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(58, 134, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -439,7 +757,7 @@
             }
             
             section {
-                padding: 50px 0;
+                padding: 60px 0;
             }
 
             h1 {
@@ -453,10 +771,74 @@
             .terminal-body {
                 height: 250px;
             }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--card);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 15px;
+                border-bottom: 1px solid var(--border);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 80px 0 40px;
+            }
+
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cv-download {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="#" class="nav-logo">MDL</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" class="nav-link">Profilo</a>
+                <a href="#experience" class="nav-link">Esperienze</a>
+                <a href="#education" class="nav-link">Formazione</a>
+                <a href="#skills" class="nav-link">Competenze</a>
+                <a href="#contact" class="nav-link">Contatti</a>
+            </div>
+        </nav>
+    </div>
+
     <!-- Theme/Language Toggle -->
     <div class="theme-toggle">
         <button id="themeToggle" class="toggle-btn" aria-label="Toggle theme">
@@ -467,13 +849,19 @@
         </button>
     </div>
 
+    <!-- Back to top button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <header>
+        <div class="header-bg"></div>
         <div class="container">
-            <img src="https://via.placeholder.com/150" alt="Marco De Luca" class="profile-img">
-            <h1 data-i18n="name">Marco De Luca</h1>
-            <p class="tagline" data-i18n="tagline">Sviluppatore Java | Security Specialist</p>
+            <img src="https://via.placeholder.com/150" alt="Marco De Luca" class="profile-img fade-in">
+            <h1 data-i18n="name" class="fade-in delay-1">Marco De Luca</h1>
+            <p class="tagline fade-in delay-2" data-i18n="tagline">Sviluppatore Java | Security Specialist</p>
             
-            <div class="contact-info">
+            <div class="contact-info fade-in delay-3">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
                     <span>marcodeluca99@gmail.com</span>
@@ -493,16 +881,16 @@
     <main class="container">
         <section id="about">
             <div class="section-header">
-                <h2 data-i18n="about.title">Profilo Professionale</h2>
-                <p data-i18n="about.description" style="max-width: 700px; margin: 0 auto;">
+                <h2 data-i18n="about.title" class="fade-in">Profilo Professionale</h2>
+                <p data-i18n="about.description" class="fade-in delay-1" style="max-width: 700px; margin: 0 auto;">
                     Laureando in Sicurezza informatica con esperienza nello sviluppo Java e consulenza IT. 
                     Appassionato di creare soluzioni software sicure ed efficienti, con un approccio metodico 
                     e orientato ai risultati.
                 </p>
             </div>
             
-            <!-- Terminale Automatico MIGLIORATO -->
-            <div class="terminal-container">
+            <!-- Terminale Automatico -->
+            <div class="terminal-container fade-in delay-2">
                 <div class="terminal-header">
                     <div class="terminal-buttons">
                         <span class="terminal-btn red"></span>
@@ -527,11 +915,11 @@
         
         <section id="experience">
             <div class="section-header">
-                <h2 data-i18n="experience.title">Esperienze Professionali</h2>
+                <h2 data-i18n="experience.title" class="fade-in">Esperienze Professionali</h2>
             </div>
             
             <div class="card-grid">
-                <div class="card">
+                <div class="card fade-in delay-1">
                     <h3 data-i18n="experience.job1.title">Consulente Informatico</h3>
                     <h4>Abruzzo Progetti S.p.A. | <span data-i18n="experience.job1.date">2025 - Attuale</span></h4>
                     <p data-i18n="experience.job1.description">
@@ -541,34 +929,43 @@
                         <span class="skill-tag">Consulenza IT</span>
                         <span class="skill-tag">PNRR</span>
                         <span class="skill-tag">Digitalizzazione</span>
+                        <span class="skill-tag">Cybersecurity</span>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card fade-in delay-2">
                     <h3 data-i18n="experience.job2.title">Junior Java Developer</h3>
                     <h4>CGM Consulting S.r.l | 2024</h4>
                     <ul>
                         <li data-i18n="experience.job2.point1">Sviluppo applicazione Spring Boot con Spring Security</li>
                         <li data-i18n="experience.job2.point2">Autenticazione tramite provider esterni (Firebase)</li>
                         <li data-i18n="experience.job2.point3">Criptazione/decriptazione dati in MySQL</li>
+                        <li>Implementazione API RESTful</li>
                     </ul>
                     <div class="skills-list">
                         <span class="skill-tag">Java</span>
                         <span class="skill-tag">Spring Boot</span>
                         <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">REST API</span>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card fade-in delay-3">
                     <h3 data-i18n="experience.job3.title">Sviluppatore Web Freelance</h3>
                     <h4>NurSind Chieti | 2024</h4>
                     <p data-i18n="experience.job3.description">
                         Progettazione e sviluppo sito web con HTML, CSS, JavaScript e WordPress.
                     </p>
+                    <ul>
+                        <li>Design responsive e ottimizzato per mobile</li>
+                        <li>Integrazione con sistemi di pagamento</li>
+                        <li>Ottimizzazione SEO</li>
+                    </ul>
                     <div class="skills-list">
                         <span class="skill-tag">HTML/CSS</span>
                         <span class="skill-tag">JavaScript</span>
                         <span class="skill-tag">WordPress</span>
+                        <span class="skill-tag">SEO</span>
                     </div>
                 </div>
             </div>
@@ -576,66 +973,140 @@
         
         <section id="education">
             <div class="section-header">
-                <h2 data-i18n="education.title">Formazione</h2>
+                <h2 data-i18n="education.title" class="fade-in">Formazione</h2>
             </div>
             
             <div class="card-grid">
-                <div class="card">
+                <div class="card fade-in delay-1">
                     <h3 data-i18n="education.edu1.title">Laurea Magistrale in Sicurezza informatica</h3>
                     <h4>Università degli Studi del Molise | <span data-i18n="education.edu1.date">2024 - Attuale</span></h4>
                     <p data-i18n="education.edu1.description">LM-66 - Classe delle lauree magistrali in Sicurezza informatica</p>
+                    <div class="skills-list">
+                        <span class="skill-tag">Cybersecurity</span>
+                        <span class="skill-tag">Ethical Hacking</span>
+                        <span class="skill-tag">Cryptography</span>
+                    </div>
                 </div>
                 
-                <div class="card">
+                <div class="card fade-in delay-2">
                     <h3 data-i18n="education.edu2.title">Laurea in Scienze e tecnologie informatiche</h3>
                     <h4>Università degli Studi del Molise | 2018 - 2023</h4>
                     <p data-i18n="education.edu2.grade">Voto finale: 96/110</p>
+                    <ul>
+                        <li>Tesi: "Analisi di vulnerabilità in applicazioni web"</li>
+                        <li>Corsi principali: Programmazione, Database, Reti</li>
+                    </ul>
                 </div>
 
-                <div class="card">
+                <div class="card fade-in delay-3">
                     <h3 data-i18n="education.edu3.title">Corso di programmazione Java avanzato</h3>
                     <h4>CGM Consulting S.r.l | 2024</h4>
                     <p data-i18n="education.edu3.description">248 ore su Spring Boot, Spring Security e best practices</p>
+                    <div class="skills-list">
+                        <span class="skill-tag">Java EE</span>
+                        <span class="skill-tag">Spring Framework</span>
+                        <span class="skill-tag">Design Patterns</span>
+                    </div>
                 </div>
             </div>
         </section>
         
         <section id="skills">
             <div class="section-header">
-                <h2 data-i18n="skills.title">Competenze Tecniche</h2>
+                <h2 data-i18n="skills.title" class="fade-in">Competenze Tecniche</h2>
             </div>
             
             <div class="card-grid">
-                <div class="card">
+                <div class="card fade-in delay-1">
                     <h3 data-i18n="skills.section1">Linguaggi di Programmazione</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">C</span>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Java</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Python</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>JavaScript</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%;"></div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card fade-in delay-2">
                     <h3 data-i18n="skills.section2">Framework & Tecnologie</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Angular</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">Docker</span>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Spring Boot</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Angular</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Docker</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card fade-in delay-3">
                     <h3 data-i18n="skills.section3">Database & Strumenti</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">WordPress</span>
-                        <span class="skill-tag">Microsoft 365</span>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>MySQL</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Git/GitHub</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>WordPress</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -643,10 +1114,10 @@
         
         <section id="languages">
             <div class="section-header">
-                <h2 data-i18n="languages.title">Lingue</h2>
+                <h2 data-i18n="languages.title" class="fade-in">Lingue</h2>
             </div>
             
-            <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <div class="card fade-in delay-1" style="max-width: 600px; margin: 0 auto;">
                 <div class="progress-container">
                     <div class="progress-label">
                         <span data-i18n="languages.lang1">Italiano</span>
@@ -681,7 +1152,7 @@
 
         <!-- Sezione CV Download -->
         <section id="cv">
-            <div class="cv-download">
+            <div class="cv-download fade-in">
                 <h3 data-i18n="cv.title">Curriculum Vitae</h3>
                 <p data-i18n="cv.description">Scarica il mio CV completo in formato PDF per maggiori dettagli sulla mia formazione ed esperienza professionale.</p>
                 <a href="CV_Marco_De_Luca.pdf" class="btn btn-primary" download>
@@ -690,20 +1161,48 @@
             </div>
         </section>
         
-        <section id="contact" style="text-align: center;">
+        <section id="contact">
             <div class="section-header">
-                <h2 data-i18n="contact.title">Contattami</h2>
+                <h2 data-i18n="contact.title" class="fade-in">Contattami</h2>
             </div>
             
-            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 30px;">
-                <a href="mailto:marcodeluca99@gmail.com" class="btn btn-primary">
+            <div class="contact-form fade-in delay-1">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Oggetto</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Messaggio</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit">
+                        <i class="fas fa-paper-plane"></i> Invia Messaggio
+                    </button>
+                </form>
+                <div id="formMessage" class="form-message"></div>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 30px;" class="fade-in delay-2">
+                <a href="mailto:marcodeluca99@gmail.com" class="btn btn-outline">
                     <i class="fas fa-envelope"></i> <span data-i18n="contact.email">Email</span>
                 </a>
-                <a href="tel:+393286483074" class="btn btn-primary">
+                <a href="tel:+393286483074" class="btn btn-outline">
                     <i class="fas fa-phone"></i> <span data-i18n="contact.phone">Telefono</span>
                 </a>
-                <a href="https://wa.me/393286483074" class="btn btn-primary">
+                <a href="https://wa.me/393286483074" class="btn btn-outline">
                     <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.linkedin.com/in/marco-de-luca" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
                 </a>
             </div>
         </section>
@@ -712,9 +1211,9 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/marco-de-luca" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/marcodeluca" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/marcodeluca" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="mailto:marcodeluca99@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
             <p class="copyright" data-i18n="footer.copyright">© 2024 Marco De Luca. Tutti i diritti riservati.</p>
@@ -722,9 +1221,9 @@
     </footer>
 
     <script>
-        // Imposta il tema chiaro di default
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
+        // Imposta il tema in base alle preferenze dell'utente
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
         
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
@@ -741,12 +1240,13 @@
                 '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         });
         
-        // Set initial icon (moon per tema chiaro)
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        // Set initial icon
+        themeToggle.innerHTML = savedTheme === 'dark' ? 
+            '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         
         // Language Toggle
         const languageToggle = document.getElementById('languageToggle');
-        let currentLang = 'it';
+        let currentLang = localStorage.getItem('language') || 'it';
         
         const translations = {
             'it': {
@@ -833,9 +1333,13 @@
             }
         };
         
+        // Set initial language
+        updateContent(currentLang);
+        
         languageToggle.addEventListener('click', () => {
             currentLang = currentLang === 'it' ? 'en' : 'it';
             updateContent(currentLang);
+            localStorage.setItem('language', currentLang);
         });
         
         function updateContent(lang) {
@@ -847,7 +1351,7 @@
             });
         }
 
-        // Terminale Automatico MIGLIORATO
+        // Terminale Automatico
         const terminalMessages = [
             "Benvenuto nel mio portfolio!",
             "Terminale pronto. Naviga il sito per scoprire di più!",
@@ -885,7 +1389,7 @@
                     `;
                     
                     const commandSpan = messageDiv.querySelector('.terminal-command');
-                    typeWriter(terminalMessages[messageIndex], commandSpan, 30, () => {
+                    typeWriter(terminalMessages[messageIndex], commandSpan, 50, () => {
                         setTimeout(() => {
                             const responseDiv = document.createElement('div');
                             responseDiv.className = 'terminal-response';
@@ -893,41 +1397,151 @@
                             terminalOutput.appendChild(responseDiv);
                             terminalOutput.scrollTop = terminalOutput.scrollHeight;
                             messageIndex++;
-                            setTimeout(addTerminalMessage, 800);
-                        }, 300);
+                            setTimeout(addTerminalMessage, 1000);
+                        }, 500);
                     });
                 } else {
                     messageDiv.innerHTML = `
                         <span class="terminal-response">${terminalMessages[messageIndex]}<span class="terminal-cursor"></span></span>
                     `;
                     messageIndex++;
-                    setTimeout(addTerminalMessage, 1200);
+                    setTimeout(addTerminalMessage, 1500);
                 }
                 
                 terminalOutput.appendChild(messageDiv);
                 terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            } else {
-                // Loop the messages after they finish
-                setTimeout(() => {
-                    messageIndex = 0;
-                    terminalOutput.innerHTML = `
-                        <div class="terminal-line">
-                            <span class="terminal-user">marco@portfolio</span>
-                            <span class="terminal-path">~</span>
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-command">starting portfolio terminal...</span>
-                        </div>
-                        <div class="terminal-response">
-                            <span class="terminal-cursor"></span>
-                        </div>
-                    `;
-                    setTimeout(addTerminalMessage, 800);
-                }, 5000);
             }
         }
 
         // Avvia il terminale automatico
         setTimeout(addTerminalMessage, 1000);
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('open') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                if (navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                // Scroll to target
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Update active link
+                document.querySelectorAll('.nav-link').forEach(navLink => {
+                    navLink.classList.remove('active');
+                });
+                link.classList.add('active');
+            });
+        });
+
+        // Highlight active navigation link based on scroll position
+        const sections = document.querySelectorAll('section');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulate form submission (in a real scenario, you would use AJAX to send to a server)
+            formMessage.textContent = 'Messaggio inviato con successo! Ti risponderò al più presto.';
+            formMessage.className = 'form-message success';
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+
+        // Animate progress bars when they come into view
+        const progressBars = document.querySelectorAll('.progress-fill');
+        
+        function animateProgressBars() {
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            bar.style.width = width;
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(bar.parentElement);
+            });
+        }
+        
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            animateProgressBars();
+            
+            // Set active link based on initial scroll position
+            const event = new Event('scroll');
+            window.dispatchEvent(event);
+        });
     </script>
 </body>
 </html>
