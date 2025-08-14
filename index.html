@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco De Luca | Sviluppatore & Security Specialist</title>
+    <title>Marco De Luca | Portfolio Innovativo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #3a86ff;
             --secondary: #8338ec;
+            --accent: #ff3860;
             --text: #2b2d42;
             --bg: #f8f9fa;
             --card: #ffffff;
@@ -19,6 +21,7 @@
         [data-theme="dark"] {
             --primary: #4e9eff;
             --secondary: #9d5cff;
+            --accent: #ff3860;
             --text: #e9ecef;
             --bg: #121212;
             --card: #1e1e1e;
@@ -31,72 +34,58 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            transition: background-color 0.3s ease, color 0.2s ease;
+            transition: background-color 0.3s ease, color 0.2s ease, transform 0.2s ease;
         }
-        
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         body {
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
 
-        /* Theme toggle buttons */
-        .theme-toggle {
+        /* Particles Background */
+        #particles-js {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 100;
-        }
-
-        .toggle-btn {
-            background: var(--card);
-            border: 1px solid var(--border);
-            color: var(--text);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-        }
-
-        .toggle-btn:hover {
-            background: var(--primary);
-            color: white;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.3;
         }
 
         /* Header */
         header {
-            padding: 100px 0 60px;
+            padding: 120px 0 80px;
             text-align: center;
             position: relative;
         }
         
         .profile-img {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--primary);
             margin-bottom: 24px;
             box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
         }
         
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
+            font-size: 2.8rem;
+            margin-bottom: 12px;
             font-weight: 700;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
@@ -106,196 +95,235 @@
         }
         
         .tagline {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--secondary);
             margin-bottom: 24px;
             font-weight: 500;
         }
         
-        .contact-info {
+        /* Dashboard */
+        .dashboard {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 16px;
-            margin: 24px 0;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 50px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
+            gap: 30px;
+            margin: 40px 0;
         }
 
-        /* Sections */
-        section {
-            padding: 60px 0;
-        }
-        
-        .section-header {
+        .dashboard-item {
             text-align: center;
-            margin-bottom: 40px;
+            background: var(--card);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            min-width: 180px;
         }
-        
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 16px;
+
+        .stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        /* Timeline */
+        .timeline-container {
             position: relative;
-            display: inline-block;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
         }
-        
-        h2::after {
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 80px;
+        }
+
+        .timeline-item:before {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 3px;
+            left: 30px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--primary);
         }
 
-        /* Cards */
-        .card-grid {
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 3px solid var(--card);
+            box-shadow: 0 0 0 3px var(--secondary);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        /* Terminal */
+        .terminal {
+            background: var(--card);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            max-width: 700px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            padding: 8px 12px;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .terminal-header .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            min-height: 120px;
+        }
+
+        .prompt {
+            color: var(--primary);
+        }
+
+        .command {
+            color: var(--text);
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Project Cards */
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
+            gap: 30px;
+            margin: 40px 0;
         }
 
-        .card {
+        .project-card {
+            background: var(--card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-overlay {
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        /* Skill Map */
+        .skill-map {
+            width: 100%;
+            height: 500px;
+            margin: 40px 0;
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* Currently Section */
+        .currently-card {
             background: var(--card);
             border-radius: 12px;
             padding: 30px;
+            margin: 40px 0;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        .card h4 {
-            font-size: 1rem;
-            color: var(--secondary);
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-
-        .card p {
-            margin-bottom: 16px;
-        }
-
-        .card ul {
-            padding-left: 20px;
-            margin-bottom: 16px;
-        }
-
-        .card li {
-            margin-bottom: 8px;
-        }
-
-        /* CV Download Section */
-        .cv-download {
-            text-align: center;
-            margin-top: 40px;
-            padding: 30px;
-            background: var(--card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-        }
-
-        .cv-download h3 {
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-            color: var(--primary);
-        }
-
-        .cv-download p {
-            margin-bottom: 24px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Skills */
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .skill-tag {
-            background: rgba(58, 134, 255, 0.1);
+        .currently-card h3 {
             color: var(--primary);
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(58, 134, 255, 0.2);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Progress bars */
-        .progress-container {
+        .live-feeds {
+            list-style: none;
             margin-bottom: 20px;
         }
 
-        .progress-label {
+        .live-feeds li {
+            margin-bottom: 12px;
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .progress-bar {
-            height: 6px;
-            background: var(--border);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 3px;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s ease;
+            gap: 10px;
         }
 
-        .btn-primary {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s infinite;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(58, 134, 255, 0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: rgba(58, 134, 255, 0.1);
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
 
         /* Footer */
@@ -304,7 +332,7 @@
             border-top: 1px solid var(--border);
             padding: 60px 0;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 80px;
         }
 
         .social-links {
@@ -316,7 +344,7 @@
 
         .social-links a {
             color: var(--text);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -330,266 +358,171 @@
         .social-links a:hover {
             color: white;
             background: linear-gradient(to right, var(--primary), var(--secondary));
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            color: var(--text);
-            opacity: 0.8;
-            font-size: 0.9rem;
+            transform: translateY(-3px) scale(1.1);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            section {
-                padding: 50px 0;
-            }
-
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
-
+            
             .tagline {
                 font-size: 1.1rem;
+            }
+            
+            .dashboard {
+                gap: 15px;
+            }
+            
+            .dashboard-item {
+                min-width: 140px;
+                padding: 15px;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+            
+            .timeline-item:before {
+                left: 20px;
+            }
+            
+            .timeline-item:after {
+                left: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Theme/Language Toggle -->
-    <div class="theme-toggle">
-        <button id="themeToggle" class="toggle-btn" aria-label="Toggle theme">
-            <i class="fas fa-moon"></i>
-        </button>
-        <button id="languageToggle" class="toggle-btn" aria-label="Toggle language">
-            <i class="fas fa-language"></i>
-        </button>
-    </div>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
 
+    <!-- Header -->
     <header>
         <div class="container">
             <img src="https://via.placeholder.com/150" alt="Marco De Luca" class="profile-img">
-            <h1 data-i18n="name">Marco De Luca</h1>
-            <p class="tagline" data-i18n="tagline">Informatico | Security Specialist</p>
+            <h1>Marco De Luca</h1>
+            <p class="tagline">Sviluppatore Java | Security Specialist</p>
             
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>marcodeluca99@gmail.com</span>
+            <!-- Dashboard -->
+            <div class="dashboard">
+                <div class="dashboard-item">
+                    <div class="stat" data-count="12">0</div>
+                    <p>Progetti completati</p>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>(+39) 328 648 3074</span>
+                <div class="dashboard-item">
+                    <div class="stat" data-count="8">0</div>
+                    <p>Framework dominati</p>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span data-i18n="location">Lanciano, Italia</span>
+                <div class="dashboard-item">
+                    <div class="stat" data-count="3">0</div>
+                    <p>Certificazioni</p>
                 </div>
             </div>
         </div>
     </header>
     
     <main class="container">
-        <section id="about">
-            <div class="section-header">
-                <h2 data-i18n="about.title">Profilo Professionale</h2>
-                <p data-i18n="about.description" style="max-width: 700px; margin: 0 auto;">
-                    Laureando in Sicurezza informatica con esperienza nello sviluppo Java e consulenza IT. 
-                    Appassionato di creare soluzioni software sicure ed efficienti, con un approccio metodico 
-                    e orientato ai risultati.
-                </p>
+        <!-- Timeline -->
+        <section>
+            <h2>Il Mio Percorso</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <h3>Laurea Triennale</h3>
+                    <p>Scienze e Tecnologie Informatiche</p>
+                    <p>2018 - 2023 | Università degli Studi del Molise</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Junior Java Developer</h3>
+                    <p>CGM Consulting S.r.l</p>
+                    <p>2024 | Sviluppo applicazioni Spring Boot</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Laurea Magistrale</h3>
+                    <p>Sicurezza Informatica</p>
+                    <p>2024 - Attuale | Università degli Studi del Molise</p>
+                </div>
             </div>
         </section>
-        
-        <section id="experience">
-            <div class="section-header">
-                <h2 data-i18n="experience.title">Esperienze Professionali</h2>
-            </div>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <h3 data-i18n="experience.job1.title">Consulente Informatico</h3>
-                    <h4>Abruzzo Progetti S.p.A. | <span data-i18n="experience.job1.date">2025 - Attuale</span></h4>
-                    <p data-i18n="experience.job1.description">
-                        Incarico professionale nell'ambito del progetto "Rete di Servizi di Facilitazione Digitale", finanziato dal PNRR.
-                    </p>
-                    <div class="skills-list">
-                        <span class="skill-tag">Consulenza IT</span>
-                        <span class="skill-tag">PNRR</span>
-                        <span class="skill-tag">Digitalizzazione</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3 data-i18n="experience.job2.title">Junior Java Developer</h3>
-                    <h4>CGM Consulting S.r.l | 2024</h4>
-                    <ul>
-                        <li data-i18n="experience.job2.point1">Sviluppo applicazione Spring Boot con Spring Security</li>
-                        <li data-i18n="experience.job2.point2">Autenticazione tramite provider esterni (Firebase)</li>
-                        <li data-i18n="experience.job2.point3">Criptazione/decriptazione dati in MySQL</li>
-                    </ul>
-                    <div class="skills-list">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">MySQL</span>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <h3 data-i18n="experience.job3.title">Sviluppatore Web Freelance</h3>
-                    <h4>NurSind Chieti | 2024</h4>
-                    <p data-i18n="experience.job3.description">
-                        Progettazione e sviluppo sito web con HTML, CSS, JavaScript e WordPress.
-                    </p>
-                    <div class="skills-list">
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">WordPress</span>
-                    </div>
+        <!-- Terminal -->
+        <section>
+            <h2>La Mia Console</h2>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="terminal-body" id="typeEffect">
+                    <span class="prompt">$</span> <span class="command"></span><span class="cursor">|</span>
                 </div>
             </div>
         </section>
-        
-        <section id="education">
-            <div class="section-header">
-                <h2 data-i18n="education.title">Formazione</h2>
-            </div>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <h3 data-i18n="education.edu1.title">Laurea Magistrale in Sicurezza informatica</h3>
-                    <h4>Università degli Studi del Molise | <span data-i18n="education.edu1.date">2024 - Attuale</span></h4>
-                    <p data-i18n="education.edu1.description">LM-66 - Classe delle lauree magistrali in Sicurezza informatica</p>
-                </div>
-                
-                <div class="card">
-                    <h3 data-i18n="education.edu2.title">Laurea in Scienze e tecnologie informatiche</h3>
-                    <h4>Università degli Studi del Molise | 2018 - 2023</h4>
-                    <p data-i18n="education.edu2.grade">Voto finale: 96/110</p>
-                </div>
 
-                <div class="card">
-                    <h3 data-i18n="education.edu3.title">Corso di programmazione Java avanzato</h3>
-                    <h4>CGM Consulting S.r.l | 2024</h4>
-                    <p data-i18n="education.edu3.description">248 ore su Spring Boot, Spring Security e best practices</p>
-                </div>
-            </div>
-        </section>
-        
-        <section id="skills">
-            <div class="section-header">
-                <h2 data-i18n="skills.title">Competenze Tecniche</h2>
-            </div>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <h3 data-i18n="skills.section1">Linguaggi di Programmazione</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">C</span>
+        <!-- Projects -->
+        <section>
+            <h2>Progetti Recenti</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                    <div class="project-overlay">
+                        <h3>Security Dashboard</h3>
+                        <p>Piattaforma di monitoraggio sicurezza</p>
+                        <button class="btn">Dettagli</button>
                     </div>
                 </div>
-                
-                <div class="card">
-                    <h3 data-i18n="skills.section2">Framework & Tecnologie</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Angular</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">Docker</span>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                    <div class="project-overlay">
+                        <h3>E-commerce</h3>
+                        <p>Piattaforma con Spring Boot</p>
+                        <button class="btn">Dettagli</button>
                     </div>
                 </div>
-                
-                <div class="card">
-                    <h3 data-i18n="skills.section3">Database & Strumenti</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">WordPress</span>
-                        <span class="skill-tag">Microsoft 365</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="languages">
-            <div class="section-header">
-                <h2 data-i18n="languages.title">Lingue</h2>
-            </div>
-            
-            <div class="card" style="max-width: 600px; margin: 0 auto;">
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span data-i18n="languages.lang1">Italiano</span>
-                        <span data-i18n="languages.lang1.level">Madrelingua</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 100%;"></div>
-                    </div>
-                </div>
-                
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span data-i18n="languages.lang2">Inglese</span>
-                        <span>B1</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 70%;"></div>
-                    </div>
-                </div>
-                
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span data-i18n="languages.lang3">Spagnolo</span>
-                        <span>A1</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 30%;"></div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                    <div class="project-overlay">
+                        <h3>Portfolio CMS</h3>
+                        <p>Sistema personalizzato</p>
+                        <button class="btn">Dettagli</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sezione CV Download -->
-        <section id="cv">
-            <div class="cv-download">
-                <h3 data-i18n="cv.title">Curriculum Vitae</h3>
-                <p data-i18n="cv.description">Scarica il mio CV completo in formato PDF per maggiori dettagli sulla mia formazione ed esperienza professionale.</p>
-                <a href="CVE_Marco_De_Luca.pdf" class="btn btn-primary" download>
-                    <i class="fas fa-download"></i> <span data-i18n="cv.button">Scarica CV</span>
-                </a>
+        <!-- Skill Map -->
+        <section>
+            <h2>Mappa delle Competenze</h2>
+            <div class="skill-map" id="skillVisualization">
+                <!-- Verrà popolato da D3.js -->
+                <svg width="100%" height="100%"></svg>
             </div>
         </section>
-        
-        <section id="contact" style="text-align: center;">
-            <div class="section-header">
-                <h2 data-i18n="contact.title">Contattami</h2>
-            </div>
-            
-            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 30px;">
-                <a href="mailto:marcodeluca99@gmail.com" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i> <span data-i18n="contact.email">Email</span>
-                </a>
-                <a href="tel:+393286483074" class="btn btn-primary">
-                    <i class="fas fa-phone"></i> <span data-i18n="contact.phone">Telefono</span>
-                </a>
-                <a href="https://wa.me/393286483074" class="btn btn-primary">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
+
+        <!-- Currently -->
+        <section>
+            <h2>Cosa Sto Facendo Ora</h2>
+            <div class="currently-card">
+                <h3><i class="fas fa-code"></i> Attualmente</h3>
+                <ul class="live-feeds">
+                    <li>
+                        <span class="live-dot"></span>
+                        <span class="activity">Studiando: Sicurezza Cloud</span>
+                    </li>
+                    <li>
+                        <span class="live-dot"></span>
+                        <span class="activity">Lavorando a: Progetto PNRR</span>
+                    </li>
+                    <li>
+                        <span class="live-dot"></span>
+                        <span class="activity">Esplorando: Docker avanzato</span>
+                    </li>
+                </ul>
+                <div class="music-player">
+                    <span><i class="fas fa-music"></i> In ascolto: <span id="now-playing">Queen - Bohemian Rhapsody</span></span>
+                </div>
             </div>
         </section>
     </main>
@@ -602,135 +535,231 @@
                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 <a href="mailto:marcodeluca99@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
-            <p class="copyright" data-i18n="footer.copyright">© 2024 Marco De Luca. Tutti i diritti riservati.</p>
+            <p>&copy; 2024 Marco De Luca. Tutti i diritti riservati.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    
     <script>
-        // Imposta il tema chiaro di default
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            // Update icon
-            themeToggle.innerHTML = newTheme === 'dark' ? 
-                '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        });
-        
-        // Set initial icon (moon per tema chiaro)
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        
-        // Language Toggle
-        const languageToggle = document.getElementById('languageToggle');
-        let currentLang = 'it';
-        
-        const translations = {
-            'it': {
-                'name': 'Marco De Luca',
-                'tagline': 'Sviluppatore Java | Security Specialist',
-                'location': 'Lanciano, Italia',
-                'about.title': 'Profilo Professionale',
-                'about.description': 'Laureando in Sicurezza informatica con esperienza nello sviluppo Java e consulenza IT. Appassionato di creare soluzioni software sicure ed efficienti, con un approccio metodico e orientato ai risultati.',
-                'experience.title': 'Esperienze Professionali',
-                'experience.job1.title': 'Consulente Informatico',
-                'experience.job1.date': '2025 - Attuale',
-                'experience.job1.description': 'Incarico professionale nell\'ambito del progetto "Rete di Servizi di Facilitazione Digitale", finanziato dal PNRR.',
-                'experience.job2.title': 'Junior Java Developer',
-                'experience.job2.point1': 'Sviluppo applicazione Spring Boot con Spring Security',
-                'experience.job2.point2': 'Autenticazione tramite provider esterni (Firebase)',
-                'experience.job2.point3': 'Criptazione/decriptazione dati in MySQL',
-                'experience.job3.title': 'Sviluppatore Web Freelance',
-                'experience.job3.description': 'Progettazione e sviluppo sito web con HTML, CSS, JavaScript e WordPress.',
-                'education.title': 'Formazione',
-                'education.edu1.title': 'Laurea Magistrale in Sicurezza informatica',
-                'education.edu1.date': '2024 - Attuale',
-                'education.edu1.description': 'LM-66 - Classe delle lauree magistrali in Sicurezza informatica',
-                'education.edu2.title': 'Laurea in Scienze e tecnologie informatiche',
-                'education.edu2.grade': 'Voto finale: 96/110',
-                'education.edu3.title': 'Corso di programmazione Java avanzato',
-                'education.edu3.description': '248 ore su Spring Boot, Spring Security e best practices',
-                'skills.title': 'Competenze Tecniche',
-                'skills.section1': 'Linguaggi di Programmazione',
-                'skills.section2': 'Framework & Tecnologie',
-                'skills.section3': 'Database & Strumenti',
-                'languages.title': 'Lingue',
-                'languages.lang1': 'Italiano',
-                'languages.lang1.level': 'Madrelingua',
-                'languages.lang2': 'Inglese',
-                'languages.lang3': 'Spagnolo',
-                'cv.title': 'Curriculum Vitae',
-                'cv.description': 'Scarica il mio CV completo in formato PDF per maggiori dettagli sulla mia formazione ed esperienza professionale.',
-                'cv.button': 'Scarica CV',
-                'contact.title': 'Contattami',
-                'contact.email': 'Email',
-                'contact.phone': 'Telefono',
-                'footer.copyright': '© 2024 Marco De Luca. Tutti i diritti riservati.'
+        // Inizializzazione particelle
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#3a86ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#3a86ff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
             },
-            'en': {
-                'name': 'Marco De Luca',
-                'tagline': 'Computer Scientist | Security Specialist',
-                'location': 'Lanciano, Italy',
-                'about.title': 'Professional Profile',
-                'about.description': 'Master\'s student in Cybersecurity with experience in Java development and IT consulting. Passionate about creating secure and efficient software solutions with a methodical and results-oriented approach.',
-                'experience.title': 'Professional Experience',
-                'experience.job1.title': 'IT Consultant',
-                'experience.job1.date': '2025 - Present',
-                'experience.job1.description': 'Professional assignment within the "Digital Facilitation Services Network" project, funded by PNRR.',
-                'experience.job2.title': 'Junior Java Developer',
-                'experience.job2.point1': 'Spring Boot application development with Spring Security',
-                'experience.job2.point2': 'Authentication via external providers (Firebase)',
-                'experience.job2.point3': 'Data encryption/decryption in MySQL',
-                'experience.job3.title': 'Freelance Web Developer',
-                'experience.job3.description': 'Design and development of websites with HTML, CSS, JavaScript and WordPress.',
-                'education.title': 'Education',
-                'education.edu1.title': 'Master\'s Degree in Cybersecurity',
-                'education.edu1.date': '2024 - Present',
-                'education.edu1.description': 'LM-66 - Master\'s degree class in Cybersecurity',
-                'education.edu2.title': 'Bachelor\'s Degree in Computer Science',
-                'education.edu2.grade': 'Final grade: 96/110',
-                'education.edu3.title': 'Advanced Java Programming Course',
-                'education.edu3.description': '248 hours on Spring Boot, Spring Security and best practices',
-                'skills.title': 'Technical Skills',
-                'skills.section1': 'Programming Languages',
-                'skills.section2': 'Frameworks & Technologies',
-                'skills.section3': 'Databases & Tools',
-                'languages.title': 'Languages',
-                'languages.lang1': 'Italian',
-                'languages.lang1.level': 'Native',
-                'languages.lang2': 'English',
-                'languages.lang3': 'Spanish',
-                'cv.title': 'Curriculum Vitae',
-                'cv.description': 'Download my complete CV in PDF format for more details about my education and professional experience.',
-                'cv.button': 'Download CV',
-                'contact.title': 'Contact Me',
-                'contact.email': 'Email',
-                'contact.phone': 'Phone',
-                'footer.copyright': '© 2024 Marco De Luca. All rights reserved.'
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
             }
-        };
+        });
+
+        // Animazione contatori dashboard
+        const counters = document.querySelectorAll('.stat');
+        const speed = 200;
         
-        languageToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'it' ? 'en' : 'it';
-            updateContent(currentLang);
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-count');
+            const count = +counter.innerText;
+            const increment = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCounter, 1);
+            } else {
+                counter.innerText = target;
+            }
+            
+            function updateCounter() {
+                const count = +counter.innerText;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCounter, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            }
+        });
+
+        // Terminal typing effect
+        const commands = [
+            "git clone my-skills",
+            "npm install expertise",
+            "./run.sh --passion",
+            "echo 'Benvenuto nel mio portfolio!'"
+        ];
+        let cmdIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isPaused = false;
+        
+        function typeTerminal() {
+            const terminal = document.querySelector('.command');
+            const currentCmd = commands[cmdIndex];
+            
+            if (isDeleting) {
+                terminal.textContent = currentCmd.substring(0, charIndex-1);
+                charIndex--;
+            } else {
+                terminal.textContent = currentCmd.substring(0, charIndex+1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentCmd.length) {
+                isPaused = true;
+                setTimeout(() => {
+                    isPaused = false;
+                    isDeleting = true;
+                }, 1000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                cmdIndex = (cmdIndex + 1) % commands.length;
+            }
+            
+            if (!isPaused) {
+                setTimeout(typeTerminal, isDeleting ? 50 : 100);
+            } else {
+                setTimeout(typeTerminal, 100);
+            }
+        }
+        
+        setTimeout(typeTerminal, 1000);
+
+        // Skill Map with D3.js
+        const skillsData = {
+            nodes: [
+                { id: "Java", group: 1 },
+                { id: "Spring", group: 1 },
+                { id: "Security", group: 2 },
+                { id: "Python", group: 1 },
+                { id: "Docker", group: 3 },
+                { id: "MySQL", group: 3 }
+            ],
+            links: [
+                { source: "Java", target: "Spring", value: 5 },
+                { source: "Java", target: "Security", value: 4 },
+                { source: "Java", target: "Python", value: 3 },
+                { source: "Spring", target: "Docker", value: 3 },
+                { source: "Spring", target: "MySQL", value: 4 }
+            ]
+        };
+
+        const width = document.getElementById('skillVisualization').clientWidth;
+        const height = 500;
+        
+        const svg = d3.select("#skillVisualization svg")
+            .attr("width", width)
+            .attr("height", height);
+            
+        const simulation = d3.forceSimulation(skillsData.nodes)
+            .force("link", d3.forceLink(skillsData.links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+            
+        const link = svg.append("g")
+            .selectAll("line")
+            .data(skillsData.links)
+            .enter().append("line")
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6)
+            .attr("stroke-width", d => Math.sqrt(d.value));
+            
+        const node = svg.append("g")
+            .selectAll("circle")
+            .data(skillsData.nodes)
+            .enter().append("g")
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+            
+        node.append("circle")
+            .attr("r", 20)
+            .attr("fill", d => d.group === 1 ? "#3a86ff" : d.group === 2 ? "#8338ec" : "#ff3860");
+            
+        node.append("text")
+            .text(d => d.id)
+            .attr("dy", 4)
+            .attr("text-anchor", "middle")
+            .attr("fill", "white")
+            .attr("font-size", "10px");
+            
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+                
+            node
+                .attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+            
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+            
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+            
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        gsap.utils.toArray("section").forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8
+            });
         });
         
-        function updateContent(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-        }
+        gsap.from(".dashboard-item", {
+            scrollTrigger: {
+                trigger: ".dashboard",
+                start: "top 80%"
+            },
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.6
+        });
+        
+        gsap.from(".project-card", {
+            scrollTrigger: {
+                trigger: ".projects-grid",
+                start: "top 80%"
+            },
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.6
+        });
     </script>
 </body>
 </html>
