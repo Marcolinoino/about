@@ -325,8 +325,9 @@
         /* Cards */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
+            align-items: stretch;
         }
 
         .card {
@@ -339,6 +340,10 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 300px;
         }
 
         .card:hover {
@@ -351,6 +356,7 @@
             margin-bottom: 12px;
             color: var(--primary);
             font-weight: 700;
+            text-align: center;
         }
 
         .card h4 {
@@ -358,23 +364,32 @@
             color: var(--secondary);
             margin-bottom: 20px;
             font-weight: 600;
+            text-align: center;
         }
 
         .card p {
             margin-bottom: 20px;
             color: var(--text-light);
             line-height: 1.8;
+            text-align: center;
+            flex-grow: 1;
         }
 
         .card ul {
             padding-left: 24px;
             margin-bottom: 20px;
+            flex-grow: 1;
         }
 
         .card li {
             margin-bottom: 12px;
             color: var(--text-light);
             line-height: 1.6;
+        }
+
+        .card .skills-list {
+            margin-top: auto;
+            justify-content: center;
         }
 
         /* CV Download Section */
@@ -389,6 +404,11 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
         }
 
         .cv-download::before {
@@ -556,6 +576,8 @@
             flex-wrap: wrap;
             gap: 12px;
             margin-top: 24px;
+            justify-content: center;
+            align-items: center;
         }
 
         .skill-tag {
@@ -595,6 +617,7 @@
         /* Progress bars */
         .progress-container {
             margin-bottom: 24px;
+            text-align: center;
         }
 
         .progress-label {
@@ -603,6 +626,7 @@
             margin-bottom: 12px;
             font-weight: 600;
             color: var(--text);
+            align-items: center;
         }
 
         .progress-bar {
@@ -642,6 +666,7 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             padding: 16px 32px;
             border-radius: 50px;
@@ -654,6 +679,8 @@
             z-index: 1;
             border: none;
             cursor: pointer;
+            min-width: 160px;
+            height: 50px;
         }
 
         .btn::before {
@@ -722,22 +749,25 @@
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            padding: 30px;
+            padding: 40px;
             background: var(--card);
-            border-radius: 12px;
+            border-radius: 20px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            text-align: center;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            text-align: left;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
+            margin-bottom: 10px;
+            font-weight: 600;
             color: var(--text);
+            text-align: center;
         }
 
         .form-control {
@@ -764,9 +794,10 @@
 
         .form-submit {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
+            margin-top: 20px;
         }
 
         .form-message {
@@ -795,6 +826,7 @@
             margin: 20px 0;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         .form-control:invalid {
@@ -833,6 +865,7 @@
         .social-links {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 24px;
             margin: 40px 0;
             position: relative;
@@ -1009,10 +1042,6 @@
             .tagline {
                 font-size: 1.2rem;
             }
-            
-            .terminal-body {
-                height: 280px;
-            }
 
             .mobile-menu-btn {
                 display: block;
@@ -1049,15 +1078,23 @@
 
             .card {
                 padding: 30px 24px;
+                min-height: 250px;
             }
 
             .btn {
                 padding: 14px 28px;
                 font-size: 0.95rem;
+                min-width: 140px;
+                height: 45px;
             }
 
             .cv-download {
                 padding: 40px 24px;
+                min-height: 250px;
+            }
+
+            .contact-form {
+                padding: 30px 24px;
             }
         }
 
@@ -1087,15 +1124,19 @@
 
             .cv-download {
                 padding: 30px 20px;
+                min-height: 200px;
             }
 
             .card {
                 padding: 24px 20px;
+                min-height: 200px;
             }
 
             .btn {
                 padding: 12px 24px;
                 font-size: 0.9rem;
+                min-width: 120px;
+                height: 40px;
             }
 
             .social-links {
@@ -1106,6 +1147,19 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.2rem;
+            }
+
+            .contact-form {
+                padding: 24px 20px;
+            }
+
+            .skills-list {
+                gap: 8px;
+            }
+
+            .skill-tag {
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -1470,7 +1524,7 @@
                 <div id="formMessage" class="form-message"></div>
             </div>
             
-            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 30px;" class="fade-in delay-2">
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px;" class="fade-in delay-2">
                 <a href="mailto:marcodeluca99@gmail.com" class="btn btn-outline">
                     <i class="fas fa-envelope"></i> <span data-i18n="contact.email">Email</span>
                 </a>
