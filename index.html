@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         :root {
             --primary: #667eea;
@@ -187,6 +188,8 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             color: white;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .contact-item:hover {
@@ -338,25 +341,9 @@
             backdrop-filter: blur(10px);
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
         .card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
         }
 
         .card h3 {
@@ -803,6 +790,23 @@
             display: block;
         }
 
+        /* reCAPTCHA styling */
+        .g-recaptcha {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-control:invalid {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.1);
+        }
+
+        .form-control:valid {
+            border-color: var(--success);
+            box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
+        }
+
         /* Footer */
         footer {
             background: var(--gradient-primary);
@@ -1144,21 +1148,21 @@
         <div class="container">
             <img src="https://via.placeholder.com/150" alt="Marco De Luca" class="profile-img fade-in">
             <h1 data-i18n="name" class="fade-in delay-1">Marco De Luca</h1>
-            <p class="tagline fade-in delay-2" data-i18n="tagline">Sviluppatore Java | Security Specialist</p>
+            <p class="tagline fade-in delay-2" data-i18n="tagline">Sviluppatore/Consulente Informatico</p>
             
             <div class="contact-info fade-in delay-3">
-                <div class="contact-item">
+                <a href="mailto:marcodeluca99@gmail.com" class="contact-item">
                     <i class="fas fa-envelope"></i>
                     <span>marcodeluca99@gmail.com</span>
-                </div>
-                <div class="contact-item">
+                </a>
+                <a href="tel:+393286483074" class="contact-item">
                     <i class="fas fa-phone"></i>
                     <span>(+39) 328 648 3074</span>
-                </div>
-                <div class="contact-item">
+                </a>
+                <a href="https://maps.google.com/?q=Lanciano,Italia" target="_blank" class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <span data-i18n="location">Lanciano, Italia</span>
-                </div>
+                </a>
             </div>
         </div>
     </header>
@@ -1168,34 +1172,15 @@
             <div class="section-header">
                 <h2 data-i18n="about.title" class="fade-in">Profilo Professionale</h2>
                 <p data-i18n="about.description" class="fade-in delay-1" style="max-width: 700px; margin: 0 auto;">
-                    Laureando in Sicurezza informatica con esperienza nello sviluppo Java e consulenza IT. 
-                    Appassionato di creare soluzioni software sicure ed efficienti, con un approccio metodico 
-                    e orientato ai risultati.
+                    Professionista IT con solida formazione in Sicurezza Informatica e sviluppo software. 
+                    Specializzato nella creazione di soluzioni tecnologiche innovative e sicure, con particolare 
+                    attenzione alla qualità del codice e alla protezione dei dati. Esperienza consolidata 
+                    in consulenza IT e sviluppo di applicazioni enterprise, sempre con un approccio 
+                    metodico e orientato all'eccellenza.
                 </p>
             </div>
             
-            <!-- Terminale Automatico -->
-            <div class="terminal-container fade-in delay-2">
-                <div class="terminal-header">
-                    <div class="terminal-buttons">
-                        <span class="terminal-btn red"></span>
-                        <span class="terminal-btn yellow"></span>
-                        <span class="terminal-btn green"></span>
-                    </div>
-                    <div class="terminal-title">marco@portfolio: ~</div>
-                </div>
-                <div class="terminal-body" id="terminalOutput">
-                    <div class="terminal-line">
-                        <span class="terminal-user">marco@portfolio</span>
-                        <span class="terminal-path">~</span>
-                        <span class="terminal-prompt">$</span>
-                        <span class="terminal-command">starting portfolio terminal...</span>
-                    </div>
-                    <div class="terminal-response">
-                        <span class="terminal-cursor"></span>
-                    </div>
-                </div>
-            </div>
+
         </section>
         
         <section id="experience">
@@ -1281,6 +1266,12 @@
                         <li>Tesi: "Analisi di vulnerabilità in applicazioni web"</li>
                         <li>Corsi principali: Programmazione, Database, Reti</li>
                     </ul>
+                    <div class="skills-list">
+                        <span class="skill-tag">Programmazione</span>
+                        <span class="skill-tag">Database</span>
+                        <span class="skill-tag">Reti</span>
+                        <span class="skill-tag">Sicurezza Web</span>
+                    </div>
                 </div>
 
                 <div class="card scale-in delay-3">
@@ -1454,20 +1445,23 @@
             <div class="contact-form fade-in delay-1">
                 <form id="contactForm">
                     <div class="form-group">
-                        <label for="name" class="form-label">Nome</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
+                        <label for="name" class="form-label">Nome *</label>
+                        <input type="text" id="name" name="name" class="form-control" required placeholder="Il tuo nome completo">
                     </div>
                     <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" id="email" name="email" class="form-control" required placeholder="La tua email">
                     </div>
                     <div class="form-group">
-                        <label for="subject" class="form-label">Oggetto</label>
-                        <input type="text" id="subject" name="subject" class="form-control" required>
+                        <label for="subject" class="form-label">Oggetto *</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required placeholder="Oggetto del messaggio">
                     </div>
                     <div class="form-group">
-                        <label for="message" class="form-label">Messaggio</label>
-                        <textarea id="message" name="message" class="form-control" required></textarea>
+                        <label for="message" class="form-label">Messaggio *</label>
+                        <textarea id="message" name="message" class="form-control" required placeholder="Scrivi il tuo messaggio qui..." minlength="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"></div>
                     </div>
                     <button type="submit" class="btn btn-primary form-submit">
                         <i class="fas fa-paper-plane"></i> Invia Messaggio
@@ -1501,7 +1495,7 @@
                 <a href="https://twitter.com/" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="mailto:marcodeluca99@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
-            <p class="copyright" data-i18n="footer.copyright">© 2024 Marco De Luca. Tutti i diritti riservati.</p>
+            <p class="copyright" data-i18n="footer.copyright">© 2024 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.</p>
         </div>
     </footer>
 
@@ -1536,10 +1530,10 @@
         const translations = {
             'it': {
                 'name': 'Marco De Luca',
-                'tagline': 'Sviluppatore Java | Security Specialist',
+                'tagline': 'Sviluppatore/Consulente Informatico',
                 'location': 'Lanciano, Italia',
                 'about.title': 'Profilo Professionale',
-                'about.description': 'Laureando in Sicurezza informatica con esperienza nello sviluppo Java e consulenza IT. Appassionato di creare soluzioni software sicure ed efficienti, con un approccio metodico e orientato ai risultati.',
+                'about.description': 'Professionista IT con solida formazione in Sicurezza Informatica e sviluppo software. Specializzato nella creazione di soluzioni tecnologiche innovative e sicure, con particolare attenzione alla qualità del codice e alla protezione dei dati. Esperienza consolidata in consulenza IT e sviluppo di applicazioni enterprise, sempre con un approccio metodico e orientato all\'eccellenza.',
                 'experience.title': 'Esperienze Professionali',
                 'experience.job1.title': 'Consulente Informatico',
                 'experience.job1.date': '2025 - Attuale',
@@ -1573,14 +1567,14 @@
                 'contact.title': 'Contattami',
                 'contact.email': 'Email',
                 'contact.phone': 'Telefono',
-                'footer.copyright': '© 2024 Marco De Luca. Tutti i diritti riservati.'
+                'footer.copyright': '© 2024 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.'
             },
             'en': {
                 'name': 'Marco De Luca',
-                'tagline': 'Java Developer | Security Specialist',
+                'tagline': 'IT Developer/Consultant',
                 'location': 'Lanciano, Italy',
                 'about.title': 'Professional Profile',
-                'about.description': 'Master\'s student in Cybersecurity with experience in Java development and IT consulting. Passionate about creating secure and efficient software solutions with a methodical and results-oriented approach.',
+                'about.description': 'IT professional with solid background in Cybersecurity and software development. Specialized in creating innovative and secure technological solutions, with particular attention to code quality and data protection. Consolidated experience in IT consulting and enterprise application development, always with a methodical approach oriented towards excellence.',
                 'experience.title': 'Professional Experience',
                 'experience.job1.title': 'IT Consultant',
                 'experience.job1.date': '2025 - Present',
@@ -1614,7 +1608,7 @@
                 'contact.title': 'Contact Me',
                 'contact.email': 'Email',
                 'contact.phone': 'Phone',
-                'footer.copyright': '© 2024 Marco De Luca. All rights reserved.'
+                'footer.copyright': '© 2024 Marco De Luca. P.IVA: IT02840600692. All rights reserved.'
             }
         };
         
@@ -1636,70 +1630,7 @@
             });
         }
 
-        // Terminale Automatico
-        const terminalMessages = [
-            "Benvenuto nel mio portfolio!",
-            "Terminale pronto. Naviga il sito per scoprire di più!",
-            "Per contattarmi, vai alla sezione 'Contatti' o scrivi a marcodeluca99@gmail.com",
-            "Stai visualizzando la versione " + (currentLang === 'it' ? 'italiana' : 'inglese') + " del sito"
-        ];
 
-        const terminalOutput = document.getElementById('terminalOutput');
-        let messageIndex = 0;
-
-        function typeWriter(text, element, speed, callback) {
-            let i = 0;
-            const timer = setInterval(() => {
-                if (i < text.length) {
-                    element.innerHTML = element.innerHTML.slice(0, -7) + text.charAt(i) + '<span class="terminal-cursor"></span>';
-                    i++;
-                } else {
-                    clearInterval(timer);
-                    if (callback) callback();
-                }
-            }, speed);
-        }
-
-        function addTerminalMessage() {
-            if (messageIndex < terminalMessages.length) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'terminal-line';
-                
-                if (messageIndex > 0) {
-                    messageDiv.innerHTML = `
-                        <span class="terminal-user">marco@portfolio</span>
-                        <span class="terminal-path">~</span>
-                        <span class="terminal-prompt">$</span>
-                        <span class="terminal-command"></span>
-                    `;
-                    
-                    const commandSpan = messageDiv.querySelector('.terminal-command');
-                    typeWriter(terminalMessages[messageIndex], commandSpan, 50, () => {
-                        setTimeout(() => {
-                            const responseDiv = document.createElement('div');
-                            responseDiv.className = 'terminal-response';
-                            responseDiv.innerHTML = '<span class="terminal-cursor"></span>';
-                            terminalOutput.appendChild(responseDiv);
-                            terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                            messageIndex++;
-                            setTimeout(addTerminalMessage, 1000);
-                        }, 500);
-                    });
-                } else {
-                    messageDiv.innerHTML = `
-                        <span class="terminal-response">${terminalMessages[messageIndex]}<span class="terminal-cursor"></span></span>
-                    `;
-                    messageIndex++;
-                    setTimeout(addTerminalMessage, 1500);
-                }
-                
-                terminalOutput.appendChild(messageDiv);
-                terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            }
-        }
-
-        // Avvia il terminale automatico
-        setTimeout(addTerminalMessage, 1000);
 
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1785,18 +1716,140 @@
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
+            // Validate reCAPTCHA
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                formMessage.textContent = 'Per favore completa il reCAPTCHA.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+                return;
+            }
+            
+            // Validate form fields
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !email || !subject || !message) {
+                formMessage.textContent = 'Per favore compila tutti i campi obbligatori.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+                return;
+            }
+            
+            if (message.length < 10) {
+                formMessage.textContent = 'Il messaggio deve contenere almeno 10 caratteri.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                formMessage.textContent = 'Per favore inserisci un indirizzo email valido.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+                return;
+            }
+            
             // Simulate form submission (in a real scenario, you would use AJAX to send to a server)
             formMessage.textContent = 'Messaggio inviato con successo! Ti risponderò al più presto.';
             formMessage.className = 'form-message success';
+            formMessage.style.display = 'block';
             
-            // Reset form
+            // Reset form and reCAPTCHA
             contactForm.reset();
+            grecaptcha.reset();
             
             // Hide message after 5 seconds
             setTimeout(() => {
                 formMessage.style.display = 'none';
             }, 5000);
         });
+
+        // Real-time validation
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                validateField(input);
+            });
+            
+            input.addEventListener('input', () => {
+                if (input.classList.contains('error')) {
+                    validateField(input);
+                }
+            });
+        });
+
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldName = field.name;
+            
+            switch(fieldName) {
+                case 'name':
+                    if (value.length < 2) {
+                        showFieldError(field, 'Il nome deve contenere almeno 2 caratteri.');
+                    } else {
+                        clearFieldError(field);
+                    }
+                    break;
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        showFieldError(field, 'Inserisci un indirizzo email valido.');
+                    } else {
+                        clearFieldError(field);
+                    }
+                    break;
+                case 'subject':
+                    if (value.length < 3) {
+                        showFieldError(field, 'L\'oggetto deve contenere almeno 3 caratteri.');
+                    } else {
+                        clearFieldError(field);
+                    }
+                    break;
+                case 'message':
+                    if (value.length < 10) {
+                        showFieldError(field, 'Il messaggio deve contenere almeno 10 caratteri.');
+                    } else {
+                        clearFieldError(field);
+                    }
+                    break;
+            }
+        }
+
+        function showFieldError(field, message) {
+            field.classList.add('error');
+            field.classList.remove('valid');
+            
+            // Remove existing error message
+            const existingError = field.parentNode.querySelector('.field-error');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Add new error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'field-error';
+            errorDiv.textContent = message;
+            errorDiv.style.color = 'var(--error)';
+            errorDiv.style.fontSize = '0.85rem';
+            errorDiv.style.marginTop = '5px';
+            field.parentNode.appendChild(errorDiv);
+        }
+
+        function clearFieldError(field) {
+            field.classList.remove('error');
+            field.classList.add('valid');
+            
+            // Remove error message
+            const existingError = field.parentNode.querySelector('.field-error');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
 
         // Animate progress bars when they come into view
         const progressBars = document.querySelectorAll('.progress-fill');
