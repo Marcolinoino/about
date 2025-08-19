@@ -1056,7 +1056,7 @@
             font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .contact-form-footer .form-control::placeholder {
@@ -1175,6 +1175,7 @@
 
         .contact-form-footer .form-control {
             padding-left: 50px;
+            cursor: text;
         }
 
         .contact-form-footer .form-group::before {
@@ -1188,7 +1189,8 @@
             background-size: contain;
             background-repeat: no-repeat;
             opacity: 0.7;
-            z-index: 2;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .contact-form-footer .form-group:nth-child(1)::before {
@@ -1430,6 +1432,7 @@
             .contact-form-footer .form-control {
                 padding: 14px 16px 14px 45px;
                 font-size: 0.95rem;
+                cursor: text;
             }
             
             .contact-form-footer .btn-primary {
@@ -1529,6 +1532,7 @@
             .contact-form-footer .form-control {
                 padding: 12px 14px 12px 40px;
                 font-size: 0.9rem;
+                cursor: text;
             }
             
             .contact-form-footer .btn-primary {
