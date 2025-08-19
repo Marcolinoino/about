@@ -18,8 +18,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <!-- reCAPTCHA script - uncomment when valid site key is available -->
-    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
     <style>
         :root {
             --primary: #667eea;
@@ -254,8 +252,6 @@
             background: rgba(255, 255, 255, 0.25);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
-
-
 
         /* Navigation */
         .nav-container {
@@ -801,8 +797,6 @@
             transform: translateY(0);
         }
 
-
-
         /* Buttons */
         .btn {
             display: inline-flex;
@@ -987,8 +981,6 @@
             justify-content: center;
         }
 
-
-
         /* Footer */
         footer {
             background: var(--gradient-primary);
@@ -1015,8 +1007,6 @@
             text-align: center;
         }
 
-
-
         .contact-form-footer {
             max-width: 600px;
             margin: 0 auto;
@@ -1030,20 +1020,16 @@
             overflow: hidden;
         }
 
-        .contact-form-footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-            border-radius: 24px 24px 0 0;
+        /* FIX: Rimuovi gli pseudo-elementi che coprono il form */
+        .contact-form-footer::before,
+        .contact-form-footer::after {
+            display: none;
         }
 
         .contact-form-footer .form-group {
             margin-bottom: 24px;
             position: relative;
+            z-index: 2; /* Assicura che i campi siano sopra altri elementi */
         }
 
         .contact-form-footer .form-control {
@@ -1096,6 +1082,7 @@
             overflow: hidden;
             width: 100%;
             margin-top: 10px;
+            z-index: 2;
         }
 
         .contact-form-footer .btn-primary::before {
@@ -1154,6 +1141,7 @@
             backdrop-filter: blur(15px);
             border: 2px solid;
             animation: slideInUp 0.4s ease;
+            z-index: 2;
         }
 
         .contact-form-footer .form-message.success {
@@ -1303,6 +1291,99 @@
             transition: transform 0.1s ease-out;
         }
 
+        /* Nuovi stili per miglioramenti grafici */
+        
+        /* Pattern decorativo per le card */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 20px 20px 0 0;
+            opacity: 0.8;
+        }
+        
+        /* Icone per le sezioni */
+        .section-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        /* Miglioramenti per le barre di progresso */
+        .progress-bar {
+            overflow: visible;
+        }
+        
+        .progress-fill {
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: attr(data-width);
+            position: absolute;
+            right: 0;
+            top: -25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--card);
+            padding: 2px 6px;
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Effetto di profondità per le card */
+        .card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+        }
+        
+        /* Pattern sottile per lo sfondo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(118, 75, 162, 0.05) 0%, transparent 20%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        [data-theme="dark"] body::before {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 20%);
+        }
+        
+        /* Separatore elegante tra sezioni */
+        section:not(:first-child)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+
         /* Responsive */
 
         @media (max-width: 768px) {
@@ -1418,9 +1499,15 @@
                 font-size: 1.35rem;
             }
 
-
-
-
+            /* Miglioramenti responsive */
+            .progress-fill::after {
+                top: -20px;
+                font-size: 0.7rem;
+            }
+            
+            .section-icon {
+                font-size: 2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1484,10 +1571,6 @@
                 margin: 4px;
             }
 
-
-
-
-
             .contact-form {
                 padding: 24px 20px;
             }
@@ -1515,6 +1598,11 @@
             .skill-tag {
                 padding: 6px 12px;
                 font-size: 0.8rem;
+            }
+            
+            /* Miglioramenti responsive */
+            .progress-fill::after {
+                display: none; /* Nascondi le percentuali su mobile per risparmiare spazio */
             }
         }
     </style>
@@ -1599,14 +1687,12 @@
                 <h2 data-i18n="about.title" class="animate-on-scroll">Profilo Professionale</h2>
                 <p data-i18n="about.description" class="animate-on-scroll" style="max-width: 700px; margin: 0 auto; margin-top: 30px;">
                     Con una laurea in Informatica e un percorso di specializzazione in Sicurezza Informatica, 
-                    ho sviluppato competenze solide in programmazione Java e tecnologie web. Attualmente 
+                    ho sviluppado competenze solide in programmazione Java e tecnologie web. Attualmente 
                     lavoro come consulente IT e facilitatore digitale, combinando sviluppo di siti web, 
                     assistenza tecnica e supporto alla digitalizzazione. Il mio approccio si basa su 
                     metodologie strutturate e una costante attitudine all'innovazione tecnologica.
                 </p>
             </div>
-            
-
         </section>
         
         <section id="experience">
@@ -1621,7 +1707,7 @@
                     <p data-i18n="experience.job1.description">
                         Incarico professionale nell'ambito del progetto "Rete di Servizi di Facilitazione Digitale", 
                         finanziato dal PNRR. Supporto alla digitalizzazione e consulenza tecnologica per 
-                        enti pubblici e privati, con focus su cybersecurity e innovazione digitale.
+                        enti pubblici e privati, avec focus su cybersecurity e innovazione digitale.
                     </p>
                     <div class="skills-list">
                         <span class="skill-tag">Consulenza IT</span>
@@ -1699,7 +1785,7 @@
                 </div>
 
                 <div class="card animate-on-scroll">
-                    <h3 data-i18n="education.edu3.title">Corso di programmazione Java avanzato</h3>
+                    <h3 data-i18n="education.edu3.title">Corso de programmazione Java avanzato</h3>
                     <h4>CGM Consulting S.r.l | 2024</h4>
                     <p data-i18n="education.edu3.description">248 ore su Spring Boot, Spring Security e best practices</p>
                     <div class="skills-list">
@@ -1860,9 +1946,6 @@
                 </a>
             </div>
         </section>
-
-        
-
     </main>
     
     <footer>
@@ -2104,8 +2187,6 @@
                 languageToggle.setAttribute('aria-label', 'Passa all\'Italiano');
             }
         }
-
-
 
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -2423,4 +2504,3 @@
     </script>
 </body>
 </html>
-
