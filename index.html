@@ -1217,7 +1217,7 @@
             <i class="fas fa-moon"></i>
         </button>
         <button id="languageToggle" class="toggle-btn" aria-label="Toggle language">
-            <i class="fas fa-language"></i>
+            <i class="fas fa-flag"></i>
         </button>
     </div>
 
@@ -1697,10 +1697,12 @@
         
         // Set initial language
         updateContent(currentLang);
+        updateLanguageIcon(currentLang);
         
         languageToggle.addEventListener('click', () => {
             currentLang = currentLang === 'it' ? 'en' : 'it';
             updateContent(currentLang);
+            updateLanguageIcon(currentLang);
             localStorage.setItem('language', currentLang);
         });
         
@@ -1711,6 +1713,17 @@
                     element.textContent = translations[lang][key];
                 }
             });
+        }
+        
+        function updateLanguageIcon(lang) {
+            const languageToggle = document.getElementById('languageToggle');
+            if (lang === 'it') {
+                languageToggle.innerHTML = '<i class="fas fa-flag"></i>';
+                languageToggle.setAttribute('aria-label', 'Switch to English');
+            } else {
+                languageToggle.innerHTML = '<i class="fas fa-flag-usa"></i>';
+                languageToggle.setAttribute('aria-label', 'Passa all\'Italiano');
+            }
         }
 
 
