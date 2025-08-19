@@ -1018,42 +1018,193 @@
 
 
         .contact-form-footer {
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border-radius: 24px 24px 0 0;
         }
 
         .contact-form-footer .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 24px;
+            position: relative;
         }
 
         .contact-form-footer .form-control {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             color: white;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 16px 20px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
         }
 
         .contact-form-footer .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
         }
 
         .contact-form-footer .form-control:focus {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .contact-form-footer .form-control:hover {
             background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-form-footer textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
         }
 
         .contact-form-footer .btn-primary {
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
             border: 2px solid rgba(255, 255, 255, 0.3);
             color: white;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            border-radius: 50px;
+            padding: 18px 36px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .contact-form-footer .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
         }
 
         .contact-form-footer .btn-primary:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.25) 100%);
             border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form-footer .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .contact-form-footer .btn-primary:active {
+            transform: translateY(-1px) scale(1.01);
+        }
+
+        /* Animazione per i campi del form */
+        .contact-form-footer .form-group {
+            animation: slideInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .contact-form-footer .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .contact-form-footer .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .contact-form-footer .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .contact-form-footer .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .contact-form-footer .form-group:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stile per i messaggi di successo/errore */
+        .contact-form-footer .form-message {
+            margin-top: 20px;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-weight: 500;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border: 2px solid;
+            animation: slideInUp 0.4s ease;
+        }
+
+        .contact-form-footer .form-message.success {
+            background: rgba(72, 187, 120, 0.15);
+            border-color: rgba(72, 187, 120, 0.3);
+            color: #48bb78;
+        }
+
+        .contact-form-footer .form-message.error {
+            background: rgba(245, 101, 101, 0.15);
+            border-color: rgba(245, 101, 101, 0.3);
+            color: #f56565;
+        }
+
+        /* Icone per i campi del form */
+        .contact-form-footer .form-group {
+            position: relative;
+        }
+
+        .contact-form-footer .form-control {
+            padding-left: 50px;
+        }
+
+        .contact-form-footer .form-group::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: 2;
+        }
+
+        .contact-form-footer .form-group:nth-child(1)::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+        }
+
+        .contact-form-footer .form-group:nth-child(2)::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+        }
+
+        .contact-form-footer .form-group:nth-child(3)::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/%3E%3C/svg%3E");
+        }
+
+        .contact-form-footer .form-group:nth-child(4)::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z'/%3E%3C/svg%3E");
         }
 
         footer::before {
@@ -1270,6 +1421,21 @@
             .contact-form {
                 padding: 30px 24px;
             }
+            
+            .contact-form-footer {
+                padding: 30px 24px;
+                margin: 0 10px;
+            }
+            
+            .contact-form-footer .form-control {
+                padding: 14px 16px 14px 45px;
+                font-size: 0.95rem;
+            }
+            
+            .contact-form-footer .btn-primary {
+                padding: 16px 28px;
+                font-size: 1rem;
+            }
 
             .social-links {
                 gap: 20px;
@@ -1353,6 +1519,21 @@
 
             .contact-form {
                 padding: 24px 20px;
+            }
+            
+            .contact-form-footer {
+                padding: 24px 20px;
+                margin: 0 5px;
+            }
+            
+            .contact-form-footer .form-control {
+                padding: 12px 14px 12px 40px;
+                font-size: 0.9rem;
+            }
+            
+            .contact-form-footer .btn-primary {
+                padding: 14px 24px;
+                font-size: 0.95rem;
             }
 
             .skills-list {
@@ -1716,7 +1897,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="animate-on-scroll">Form di Contatto</h3>
+                    <h3 class="animate-on-scroll" data-i18n="contact.title">Contattami</h3>
+                    <p class="animate-on-scroll" style="text-align: center; margin-bottom: 30px; opacity: 0.9; font-size: 1.1rem;">
+                        <span data-i18n="contact.subtitle">Hai un progetto in mente? Scrivimi e ti risponderò al più presto!</span>
+                    </p>
                     <div class="contact-form-footer animate-on-scroll">
                         <form id="contactForm">
                             <div class="form-group">
@@ -1731,10 +1915,6 @@
                             <div class="form-group">
                                 <textarea id="message" name="message" class="form-control" data-i18n-placeholder="form.message" placeholder="Il tuo messaggio *" minlength="10" required></textarea>
                             </div>
-                            <!-- reCAPTCHA temporarily disabled - uncomment when valid site key is available -->
-                            <!-- <div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY_HERE"></div>
-                            </div> -->
                             <button type="submit" class="btn btn-primary form-submit">
                                 <i class="fas fa-paper-plane"></i> <span data-i18n="form.submit">Invia Messaggio</span>
                             </button>
@@ -1826,6 +2006,7 @@
                 'cv.description': 'Scarica il mio CV completo in formato PDF per maggiori dettagli sulla mia formazione ed esperienza professionale.',
                 'cv.button': 'Scarica CV',
                 'contact.title': 'Contattami',
+                'contact.subtitle': 'Hai un progetto in mente? Scrivimi e ti risponderò al più presto!',
                 'contact.email': 'Email',
                 'contact.phone': 'Telefono',
                 'footer.copyright': '© 2025 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.',
@@ -1834,6 +2015,7 @@
                 'form.subject': 'Oggetto *',
                 'form.message': 'Il tuo messaggio *',
                 'form.submit': 'Invia Messaggio',
+                'form.sending': 'Invio in corso...',
                 'form.success': 'Messaggio inviato con successo! Ti risponderò al più presto.',
                 'form.error.recaptcha': 'Per favore completa il reCAPTCHA.',
                 'form.error.required': 'Per favore compila tutti i campi obbligatori.',
@@ -1880,6 +2062,7 @@
                 'cv.description': 'Download my complete CV in PDF format for more details about my education and professional experience.',
                 'cv.button': 'Download CV',
                 'contact.title': 'Contact Me',
+                'contact.subtitle': 'Have a project in mind? Write to me and I\'ll reply as soon as possible!',
                 'contact.email': 'Email',
                 'contact.phone': 'Phone',
                 'footer.copyright': '© 2025 Marco De Luca. P.IVA: IT02840600692. All rights reserved.',
@@ -1888,6 +2071,7 @@
                 'form.subject': 'Subject *',
                 'form.message': 'Your message *',
                 'form.submit': 'Send Message',
+                'form.sending': 'Sending...',
                 'form.success': 'Message sent successfully! I will reply as soon as possible.',
                 'form.error.recaptcha': 'Please complete the reCAPTCHA.',
                 'form.error.required': 'Please fill in all required fields.',
@@ -1927,6 +2111,15 @@
                     element.placeholder = translations[lang][key];
                 }
             });
+            
+            // Update button text if it's in sending state
+            const submitBtn = document.querySelector('.form-submit');
+            if (submitBtn && submitBtn.innerHTML.includes('fa-spinner')) {
+                const span = submitBtn.querySelector('span[data-i18n="form.sending"]');
+                if (span) {
+                    span.textContent = translations[lang]['form.sending'];
+                }
+            }
         }
         
         function updateLanguageIcon(lang) {
@@ -2022,21 +2215,15 @@
         // Contact form submission
         const contactForm = document.getElementById('contactForm');
         const formMessage = document.getElementById('formMessage');
+        const submitBtn = contactForm.querySelector('.form-submit');
         
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Validate reCAPTCHA (only if grecaptcha is available and enabled)
-            const recaptchaElement = document.querySelector('.g-recaptcha');
-            if (recaptchaElement && recaptchaElement.style.display !== 'none' && typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
-                const recaptchaResponse = grecaptcha.getResponse();
-                if (!recaptchaResponse) {
-                    formMessage.textContent = translations[currentLang]['form.error.recaptcha'];
-                    formMessage.className = 'form-message error';
-                    formMessage.style.display = 'block';
-                    return;
-                }
-            }
+            // Show loading state
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span data-i18n="form.sending">Invio in corso...</span>';
+            submitBtn.disabled = true;
             
             // Validate form fields
             const name = document.getElementById('name').value.trim();
@@ -2045,44 +2232,56 @@
             const message = document.getElementById('message').value.trim();
             
             if (!name || !email || !subject || !message) {
-                formMessage.textContent = translations[currentLang]['form.error.required'];
-                formMessage.className = 'form-message error';
-                formMessage.style.display = 'block';
+                showFormMessage(translations[currentLang]['form.error.required'], 'error');
+                resetSubmitButton(originalBtnText);
                 return;
             }
             
             if (message.length < 10) {
-                formMessage.textContent = translations[currentLang]['form.error.message'];
-                formMessage.className = 'form-message error';
-                formMessage.style.display = 'block';
+                showFormMessage(translations[currentLang]['form.error.message'], 'error');
+                resetSubmitButton(originalBtnText);
                 return;
             }
             
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                formMessage.textContent = translations[currentLang]['form.error.email'];
-                formMessage.className = 'form-message error';
-                formMessage.style.display = 'block';
+                showFormMessage(translations[currentLang]['form.error.email'], 'error');
+                resetSubmitButton(originalBtnText);
                 return;
             }
             
-            // Simulate form submission (in a real scenario, you would use AJAX to send to a server)
-            formMessage.textContent = translations[currentLang]['form.success'];
-            formMessage.className = 'form-message success';
-            formMessage.style.display = 'block';
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
             
-            // Reset form and reCAPTCHA
+            // Show success message
+            showFormMessage(translations[currentLang]['form.success'], 'success');
+            
+            // Reset form
             contactForm.reset();
-            if (typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
-                grecaptcha.reset();
-            }
             
-            // Hide message after 5 seconds
+            // Reset button
+            resetSubmitButton(originalBtnText);
+            
+            // Hide message after 6 seconds
             setTimeout(() => {
                 formMessage.style.display = 'none';
-            }, 5000);
+            }, 6000);
         });
+        
+        function showFormMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+            formMessage.style.display = 'block';
+            
+            // Scroll to message
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        function resetSubmitButton(originalText) {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
 
         // Real-time validation
         const formInputs = contactForm.querySelectorAll('input, textarea');
