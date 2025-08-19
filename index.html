@@ -2160,19 +2160,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animated');
-                        
-                        // Se è una barra di progresso, anima anche quella
-                        const progressFill = entry.target.querySelector('.progress-fill');
-                        if (progressFill) {
-                            const width = progressFill.getAttribute('data-width');
-                            if (width) {
-                                progressFill.style.setProperty('--progress-width', width);
-                                setTimeout(() => {
-                                    progressFill.classList.add('animated');
-                                }, 300); // Ritardo per l'animazione della barra
-                            }
-                        }
-                        
                         observer.unobserve(entry.target);
                     }
                 });
@@ -2190,11 +2177,27 @@
         function animateProgressBars() {
             const progressBars = document.querySelectorAll('.progress-fill');
             
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.getAttribute('data-width');
+                        if (width) {
+                            // Imposta la larghezza finale
+                            bar.style.width = width;
+                        }
+                        observer.unobserve(bar);
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
             progressBars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                if (width) {
-                    bar.style.setProperty('--progress-width', width);
-                }
+                // Assicurati che inizi da 0
+                bar.style.width = '0';
+                observer.observe(bar);
             });
         }
 
