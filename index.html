@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio professionale di Marco De Luca, Sviluppatore Java e Security Specialist">
-    <meta name="keywords" content="sviluppatore java, security specialist, portfolio, curriculum, marco de luca">
+    <meta name="description" content="Portfolio professionale di Marco De Luca, Consulente IT, Sviluppatore Java e Specialista in Sicurezza Informatica. Esperto in Spring Boot, cybersecurity e sviluppo web.">
+    <meta name="keywords" content="sviluppatore java, security specialist, portfolio, curriculum, marco de luca, consulente IT, cybersecurity, spring boot, sviluppo web">
+    <meta name="author" content="Marco De Luca">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <link rel="canonical" href="https://marcodeluca.dev">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
     <title>Marco De Luca - IT Consultant | Web Developer | Cybersecurity Specialist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- reCAPTCHA script - uncomment when valid site key is available -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
     <style>
         :root {
             --primary: #667eea;
@@ -54,6 +63,17 @@
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Fallback for when JavaScript is disabled */
+        .js-enabled .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .no-js .animate-on-scroll {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         body {
@@ -619,20 +639,6 @@
             align-items: center;
         }
 
-        .skill-tag {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
         .skill-tag::before {
             content: '';
             position: absolute;
@@ -684,6 +690,21 @@
             position: relative;
             overflow: hidden;
             width: 0; /* Inizia sempre da 0 */
+        }
+        
+        /* Ensure sufficient color contrast for accessibility */
+        .skill-tag {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
         .progress-fill::after {
@@ -766,10 +787,7 @@
             transform: translateY(0);
         }
 
-        /* Animazione specifica per le barre di progresso */
-        .progress-fill.animated {
-            width: var(--progress-width) !important;
-        }
+
 
         /* Buttons */
         .btn {
@@ -893,7 +911,7 @@
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
         }
 
         textarea.form-control {
@@ -936,12 +954,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
         }
 
         .form-control.error {
@@ -1156,75 +1168,8 @@
             transition: transform 0.1s ease-out;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        @keyframes slideInLeft {
-            from { 
-                opacity: 0; 
-                transform: translateX(-50px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0); 
-            }
-        }
-
-        @keyframes slideInRight {
-            from { 
-                opacity: 0; 
-                transform: translateX(50px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0); 
-            }
-        }
-
-        @keyframes scaleIn {
-            from { 
-                opacity: 0; 
-                transform: scale(0.8); 
-            }
-            to { 
-                opacity: 1; 
-                transform: scale(1); 
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .slide-in-right {
-            animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .scale-in {
-            animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-        .delay-6 { animation-delay: 0.6s; }
-
         /* Responsive */
+
         @media (max-width: 768px) {
             .card-grid {
                 grid-template-columns: 1fr;
@@ -1406,8 +1351,24 @@
             }
         }
     </style>
+    <noscript>
+        <style>
+            .animate-on-scroll {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+            .theme-toggle {
+                display: none !important;
+            }
+        </style>
+    </noscript>
 </head>
 <body>
+    <noscript>
+        <div style="background: #f56565; color: white; padding: 10px; text-align: center; position: fixed; top: 0; left: 0; right: 0; z-index: 9999;">
+            JavaScript è disabilitato. Alcune funzionalità potrebbero non funzionare correttamente.
+        </div>
+    </noscript>
     <!-- Navigation -->
     <div class="nav-container">
         <nav>
@@ -1427,10 +1388,10 @@
 
     <!-- Theme/Language Toggle -->
     <div class="theme-toggle">
-        <button id="themeToggle" class="toggle-btn" aria-label="Toggle theme">
+        <button id="themeToggle" class="toggle-btn" aria-label="Cambia tema (chiaro/scuro)">
             <i class="fas fa-moon"></i>
         </button>
-        <button id="languageToggle" class="toggle-btn" aria-label="Toggle language">
+        <button id="languageToggle" class="toggle-btn" aria-label="Cambia lingua (Italiano/Inglese)">
             <i class="fas fa-globe"></i>
             <span class="lang-indicator">IT</span>
         </button>
@@ -1444,7 +1405,7 @@
     <header>
         <div class="header-bg"></div>
         <div class="container">
-            <img src="https://via.placeholder.com/150" alt="Marco De Luca" class="profile-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Marco De Luca" class="profile-img">
             <h1 data-i18n="name">Marco De Luca</h1>
             <p class="tagline" data-i18n="tagline">Consulente IT | Sviluppatore Web | Specialista in Sicurezza Informatica</p>
             
@@ -1727,7 +1688,7 @@
             <div class="cv-download animate-on-scroll">
                 <h3 data-i18n="cv.title">Curriculum Vitae</h3>
                 <p data-i18n="cv.description">Scarica il mio CV completo in formato PDF per maggiori dettagli sulla mia formazione ed esperienza professionale.</p>
-                <a href="CV_Marco_De_Luca.pdf" class="btn btn-primary" download>
+                <a href="#" class="btn btn-primary" onclick="alert(translations[currentLang]['cv.alert']);">
                     <i class="fas fa-download"></i> <span data-i18n="cv.button">Scarica CV</span>
                 </a>
             </div>
@@ -1744,22 +1705,23 @@
                     <div class="contact-form-footer animate-on-scroll">
                         <form id="contactForm">
                             <div class="form-group">
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Il tuo nome completo *" required>
+                                <input type="text" id="name" name="name" class="form-control" data-i18n-placeholder="form.name" placeholder="Il tuo nome completo *" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" id="email" name="email" class="form-control" placeholder="La tua email *" required>
+                                <input type="email" id="email" name="email" class="form-control" data-i18n-placeholder="form.email" placeholder="La tua email *" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="subject" name="subject" class="form-control" placeholder="Oggetto *" required>
+                                <input type="text" id="subject" name="subject" class="form-control" data-i18n-placeholder="form.subject" placeholder="Oggetto *" required>
                             </div>
                             <div class="form-group">
-                                <textarea id="message" name="message" class="form-control" placeholder="Il tuo messaggio *" minlength="10" required></textarea>
+                                <textarea id="message" name="message" class="form-control" data-i18n-placeholder="form.message" placeholder="Il tuo messaggio *" minlength="10" required></textarea>
                             </div>
-                            <div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"></div>
-                            </div>
+                            <!-- reCAPTCHA temporarily disabled - uncomment when valid site key is available -->
+                            <!-- <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY_HERE"></div>
+                            </div> -->
                             <button type="submit" class="btn btn-primary form-submit">
-                                <i class="fas fa-paper-plane"></i> Invia Messaggio
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="form.submit">Invia Messaggio</span>
                             </button>
                         </form>
                         <div id="formMessage" class="form-message"></div>
@@ -1768,21 +1730,24 @@
             </div>
             
             <div class="social-links animate-on-scroll">
-                <a href="mailto:marcodeluca99@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="mailto:marcodeluca99@pec.it" aria-label="PEC" class="pec-link">
+                <a href="mailto:marcodeluca99@gmail.com" aria-label="Invia email a marcodeluca99@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:marcodeluca99@pec.it" aria-label="Invia PEC a marcodeluca99@pec.it" class="pec-link">
                     <i class="fas fa-envelope"></i>
                     <span class="pec-badge">PEC</span>
                 </a>
-                <a href="tel:+393286483074" aria-label="Telefono"><i class="fas fa-phone"></i></a>
-                <a href="https://wa.me/393286483074" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.linkedin.com/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="tel:+393286483074" aria-label="Chiama +39 328 648 3074"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/393286483074" aria-label="Contatta su WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/marco-de-luca-99" aria-label="Profilo LinkedIn di Marco De Luca" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/marcodeluca99" aria-label="Profilo GitHub di Marco De Luca" target="_blank"><i class="fab fa-github"></i></a>
             </div>
             <p class="copyright animate-on-scroll" data-i18n="footer.copyright">© 2025 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.</p>
         </div>
     </footer>
 
     <script>
+        // Check if JavaScript is enabled
+        document.documentElement.classList.add('js-enabled');
+        
         // Imposta il tema in base alle preferenze dell'utente
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -1824,7 +1789,7 @@
                 'experience.job2.title': 'Junior Java Developer',
                 'experience.job2.description': 'Sviluppo di applicazioni enterprise con Spring Boot e Spring Security, implementazione di sistemi di autenticazione tramite provider esterni come Firebase, gestione di database MySQL con criptazione dei dati sensibili e creazione di API RESTful per l\'integrazione di sistemi complessi.',
                 'experience.job3.title': 'Sviluppatore Web Freelance',
-                'experience.job3.description': 'Progettazione e sviluppo di siti web personalizzati utilizzando HTML, CSS, JavaScript e WordPress. Creazione di design responsive ottimizzati per dispositivi mobili, integrazione di sistemi di pagamento e ottimizzazione SEO per migliorare la visibilità online dei clienti.',
+                'experience.job3.description': 'Progettazione e sviluppo di siti web personalizzati utilizzando HTML, CSS, JavaScript e WordPress. Creazione di design responsive ottimizzati per dispositivi mobili, ottimizzazione SEO per migliorare la visibilità online dei clienti.',
                 'education.title': 'Formazione',
                 'education.edu1.title': 'Laurea Magistrale in Sicurezza informatica',
                 'education.edu1.date': '2024 - Attuale',
@@ -1848,7 +1813,22 @@
                 'contact.title': 'Contattami',
                 'contact.email': 'Email',
                 'contact.phone': 'Telefono',
-                'footer.copyright': '© 2025 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.'
+                'footer.copyright': '© 2025 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.',
+                'form.name': 'Il tuo nome completo *',
+                'form.email': 'La tua email *',
+                'form.subject': 'Oggetto *',
+                'form.message': 'Il tuo messaggio *',
+                'form.submit': 'Invia Messaggio',
+                'form.success': 'Messaggio inviato con successo! Ti risponderò al più presto.',
+                'form.error.recaptcha': 'Per favore completa il reCAPTCHA.',
+                'form.error.required': 'Per favore compila tutti i campi obbligatori.',
+                'form.error.message': 'Il messaggio deve contenere almeno 10 caratteri.',
+                'form.error.email': 'Per favore inserisci un indirizzo email valido.',
+                'cv.alert': 'CV disponibile su richiesta. Contattami via email per ricevere una copia.',
+                'validation.name': 'Il nome deve contenere almeno 2 caratteri.',
+                'validation.email': 'Inserisci un indirizzo email valido.',
+                'validation.subject': 'L\'oggetto deve contenere almeno 3 caratteri.',
+                'validation.message': 'Il messaggio deve contenere almeno 10 caratteri.'
             },
             'en': {
                 'name': 'Marco De Luca',
@@ -1887,7 +1867,22 @@
                 'contact.title': 'Contact Me',
                 'contact.email': 'Email',
                 'contact.phone': 'Phone',
-                'footer.copyright': '© 2025 Marco De Luca. P.IVA: IT02840600692. All rights reserved.'
+                'footer.copyright': '© 2025 Marco De Luca. P.IVA: IT02840600692. All rights reserved.',
+                'form.name': 'Your full name *',
+                'form.email': 'Your email *',
+                'form.subject': 'Subject *',
+                'form.message': 'Your message *',
+                'form.submit': 'Send Message',
+                'form.success': 'Message sent successfully! I will reply as soon as possible.',
+                'form.error.recaptcha': 'Please complete the reCAPTCHA.',
+                'form.error.required': 'Please fill in all required fields.',
+                'form.error.message': 'The message must contain at least 10 characters.',
+                'form.error.email': 'Please enter a valid email address.',
+                'cv.alert': 'CV available upon request. Contact me via email to receive a copy.',
+                'validation.name': 'The name must contain at least 2 characters.',
+                'validation.email': 'Please enter a valid email address.',
+                'validation.subject': 'The subject must contain at least 3 characters.',
+                'validation.message': 'The message must contain at least 10 characters.'
             }
         };
         
@@ -1907,6 +1902,14 @@
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang][key]) {
                     element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
                 }
             });
         }
@@ -2008,13 +2011,16 @@
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Validate reCAPTCHA
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (!recaptchaResponse) {
-                formMessage.textContent = 'Per favore completa il reCAPTCHA.';
-                formMessage.className = 'form-message error';
-                formMessage.style.display = 'block';
-                return;
+            // Validate reCAPTCHA (only if grecaptcha is available and enabled)
+            const recaptchaElement = document.querySelector('.g-recaptcha');
+            if (recaptchaElement && recaptchaElement.style.display !== 'none' && typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    formMessage.textContent = translations[currentLang]['form.error.recaptcha'];
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
+                    return;
+                }
             }
             
             // Validate form fields
@@ -2024,14 +2030,14 @@
             const message = document.getElementById('message').value.trim();
             
             if (!name || !email || !subject || !message) {
-                formMessage.textContent = 'Per favore compila tutti i campi obbligatori.';
+                formMessage.textContent = translations[currentLang]['form.error.required'];
                 formMessage.className = 'form-message error';
                 formMessage.style.display = 'block';
                 return;
             }
             
             if (message.length < 10) {
-                formMessage.textContent = 'Il messaggio deve contenere almeno 10 caratteri.';
+                formMessage.textContent = translations[currentLang]['form.error.message'];
                 formMessage.className = 'form-message error';
                 formMessage.style.display = 'block';
                 return;
@@ -2040,20 +2046,22 @@
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                formMessage.textContent = 'Per favore inserisci un indirizzo email valido.';
+                formMessage.textContent = translations[currentLang]['form.error.email'];
                 formMessage.className = 'form-message error';
                 formMessage.style.display = 'block';
                 return;
             }
             
             // Simulate form submission (in a real scenario, you would use AJAX to send to a server)
-            formMessage.textContent = 'Messaggio inviato con successo! Ti risponderò al più presto.';
+            formMessage.textContent = translations[currentLang]['form.success'];
             formMessage.className = 'form-message success';
             formMessage.style.display = 'block';
             
             // Reset form and reCAPTCHA
             contactForm.reset();
-            grecaptcha.reset();
+            if (typeof grecaptcha !== 'undefined' && grecaptcha.reset) {
+                grecaptcha.reset();
+            }
             
             // Hide message after 5 seconds
             setTimeout(() => {
@@ -2091,7 +2099,7 @@
             switch(fieldName) {
                 case 'name':
                     if (value.length < 2) {
-                        showFieldError(field, 'Il nome deve contenere almeno 2 caratteri.');
+                        showFieldError(field, translations[currentLang]['validation.name']);
                     } else {
                         clearFieldError(field);
                     }
@@ -2099,21 +2107,21 @@
                 case 'email':
                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     if (!emailRegex.test(value)) {
-                        showFieldError(field, 'Inserisci un indirizzo email valido.');
+                        showFieldError(field, translations[currentLang]['validation.email']);
                     } else {
                         clearFieldError(field);
                     }
                     break;
                 case 'subject':
                     if (value.length < 3) {
-                        showFieldError(field, 'L\'oggetto deve contenere almeno 3 caratteri.');
+                        showFieldError(field, translations[currentLang]['validation.subject']);
                     } else {
                         clearFieldError(field);
                     }
                     break;
                 case 'message':
                     if (value.length < 10) {
-                        showFieldError(field, 'Il messaggio deve contenere almeno 10 caratteri.');
+                        showFieldError(field, translations[currentLang]['validation.message']);
                     } else {
                         clearFieldError(field);
                     }
@@ -2213,12 +2221,15 @@
         
         // Initialize animations when page loads
         window.addEventListener('load', () => {
-            animateProgressBars();
-            initScrollAnimations();
-            
-            // Set active link based on initial scroll position
-            const event = new Event('scroll');
-            window.dispatchEvent(event);
+            // Add a small delay to ensure smooth animations
+            setTimeout(() => {
+                animateProgressBars();
+                initScrollAnimations();
+                
+                // Set active link based on initial scroll position
+                const event = new Event('scroll');
+                window.dispatchEvent(event);
+            }, 100);
         });
 
         // Add parallax effect on scroll
