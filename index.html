@@ -683,6 +683,7 @@
             transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            width: 0; /* Inizia sempre da 0 */
         }
 
         .progress-fill::after {
@@ -699,6 +700,75 @@
         @keyframes shimmer {
             0% { left: -100%; }
             100% { left: 100%; }
+        }
+
+        /* Miglioramento allineamento barre di progresso */
+        .card-grid .card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-grid .card .progress-container:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Allineamento uniforme delle barre di progresso */
+        .skills .card-grid {
+            align-items: stretch;
+        }
+
+        .skills .card {
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skills .card h3 {
+            margin-bottom: 30px;
+        }
+
+        .skills .progress-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .skills .progress-container:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Allineamento specifico per la sezione lingue */
+        #languages .card {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #languages .progress-container {
+            margin-bottom: 20px;
+        }
+
+        #languages .progress-container:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Animazione per tutte le sezioni (escluso header e footer) */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animazione specifica per le barre di progresso */
+        .progress-fill.animated {
+            width: var(--progress-width) !important;
         }
 
         /* Buttons */
@@ -902,6 +972,62 @@
             margin-top: 60px;
             position: relative;
             overflow: hidden;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+        }
+
+
+
+        .contact-form-footer {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-form-footer .form-group {
+            margin-bottom: 15px;
+        }
+
+        .contact-form-footer .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form-footer .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form-footer .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-form-footer .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form-footer .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
 
         footer::before {
@@ -1197,6 +1323,8 @@
             }
 
 
+
+
         }
 
         @media (max-width: 480px) {
@@ -1259,6 +1387,8 @@
                 font-size: 1.3rem;
                 margin: 4px;
             }
+
+
 
 
 
@@ -1338,8 +1468,8 @@
     <main class="container">
         <section id="about">
             <div class="section-header">
-                <h2 data-i18n="about.title" class="fade-in">Profilo Professionale</h2>
-                <p data-i18n="about.description" class="fade-in delay-1" style="max-width: 700px; margin: 0 auto; margin-top: 30px;">
+                <h2 data-i18n="about.title" class="animate-on-scroll">Profilo Professionale</h2>
+                <p data-i18n="about.description" class="animate-on-scroll" style="max-width: 700px; margin: 0 auto; margin-top: 30px;">
                     Con una laurea in Informatica e un percorso di specializzazione in Sicurezza Informatica, 
                     ho sviluppato competenze solide in programmazione Java e tecnologie web. Attualmente 
                     lavoro come consulente IT e facilitatore digitale, combinando sviluppo di siti web, 
@@ -1353,11 +1483,11 @@
         
         <section id="experience">
             <div class="section-header">
-                <h2 data-i18n="experience.title" class="fade-in">Esperienze Professionali</h2>
+                <h2 data-i18n="experience.title" class="animate-on-scroll">Esperienze Professionali</h2>
             </div>
             
             <div class="card-grid">
-                <div class="card slide-in-left delay-1">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="experience.job1.title">Consulente Informatico</h3>
                     <h4>Abruzzo Progetti S.p.A. | <span data-i18n="experience.job1.date">2025 - Attuale</span></h4>
                     <p data-i18n="experience.job1.description">
@@ -1373,7 +1503,7 @@
                     </div>
                 </div>
                 
-                <div class="card fade-in delay-2">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="experience.job2.title">Junior Java Developer</h3>
                     <h4>CGM Consulting S.r.l | 2024</h4>
                     <p data-i18n="experience.job2.description">
@@ -1390,7 +1520,7 @@
                     </div>
                 </div>
 
-                <div class="card slide-in-right delay-3">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="experience.job3.title">Sviluppatore Web Freelance</h3>
                     <h4>2024 - Attuale</h4>
                     <p data-i18n="experience.job3.description">
@@ -1409,11 +1539,11 @@
         
         <section id="education">
             <div class="section-header">
-                <h2 data-i18n="education.title" class="fade-in">Formazione</h2>
+                <h2 data-i18n="education.title" class="animate-on-scroll">Formazione</h2>
             </div>
             
             <div class="card-grid">
-                <div class="card scale-in delay-1">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="education.edu1.title">Laurea Magistrale in Sicurezza informatica</h3>
                     <h4>Università degli Studi del Molise | <span data-i18n="education.edu1.date">2024 - Attuale</span></h4>
                     <p data-i18n="education.edu1.description">LM-66 - Classe delle lauree magistrali in Sicurezza informatica</p>
@@ -1424,7 +1554,7 @@
                     </div>
                 </div>
                 
-                <div class="card fade-in delay-2">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="education.edu2.title">Laurea in Scienze e tecnologie informatiche</h3>
                     <h4>Università degli Studi del Molise | 2018 - 2023</h4>
                     <p data-i18n="education.edu2.grade">Voto finale: 96/110</p>
@@ -1440,7 +1570,7 @@
                     </div>
                 </div>
 
-                <div class="card scale-in delay-3">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="education.edu3.title">Corso di programmazione Java avanzato</h3>
                     <h4>CGM Consulting S.r.l | 2024</h4>
                     <p data-i18n="education.edu3.description">248 ore su Spring Boot, Spring Security e best practices</p>
@@ -1453,13 +1583,13 @@
             </div>
         </section>
         
-        <section id="skills">
+        <section id="skills" class="skills">
             <div class="section-header">
-                <h2 data-i18n="skills.title" class="fade-in">Competenze Tecniche</h2>
+                <h2 data-i18n="skills.title" class="animate-on-scroll">Competenze Tecniche</h2>
             </div>
             
             <div class="card-grid">
-                <div class="card fade-in delay-1">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="skills.section1">Linguaggi di Programmazione</h3>
                     <div class="progress-container">
                         <div class="progress-label">
@@ -1467,7 +1597,7 @@
                             <span>90%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%;"></div>
+                            <div class="progress-fill" data-width="90%"></div>
                         </div>
                     </div>
                     <div class="progress-container">
@@ -1476,7 +1606,7 @@
                             <span>75%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%;"></div>
+                            <div class="progress-fill" data-width="75%"></div>
                         </div>
                     </div>
                     <div class="progress-container">
@@ -1485,12 +1615,12 @@
                             <span>80%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 80%;"></div>
+                            <div class="progress-fill" data-width="80%"></div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="card fade-in delay-2">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="skills.section2">Framework & Tecnologie</h3>
                     <div class="progress-container">
                         <div class="progress-label">
@@ -1498,7 +1628,7 @@
                             <span>85%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%;"></div>
+                            <div class="progress-fill" data-width="85%"></div>
                         </div>
                     </div>
                     <div class="progress-container">
@@ -1507,7 +1637,7 @@
                             <span>70%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 70%;"></div>
+                            <div class="progress-fill" data-width="70%"></div>
                         </div>
                     </div>
                     <div class="progress-container">
@@ -1516,12 +1646,12 @@
                             <span>65%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 65%;"></div>
+                            <div class="progress-fill" data-width="65%"></div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="card fade-in delay-3">
+                <div class="card animate-on-scroll">
                     <h3 data-i18n="skills.section3">Database & Strumenti</h3>
                     <div class="progress-container">
                         <div class="progress-label">
@@ -1529,7 +1659,7 @@
                             <span>85%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%;"></div>
+                            <div class="progress-fill" data-width="85%"></div>
                         </div>
                     </div>
                     <div class="progress-container">
@@ -1538,7 +1668,7 @@
                             <span>90%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%;"></div>
+                            <div class="progress-fill" data-width="90%"></div>
                         </div>
                     </div>
                     <div class="progress-container">
@@ -1547,26 +1677,26 @@
                             <span>75%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%;"></div>
+                            <div class="progress-fill" data-width="75%"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section id="languages">
+        <section id="languages" class="skills">
             <div class="section-header">
-                <h2 data-i18n="languages.title" class="fade-in">Lingue</h2>
+                <h2 data-i18n="languages.title" class="animate-on-scroll">Lingue</h2>
             </div>
             
-            <div class="card fade-in delay-1" style="max-width: 600px; margin: 0 auto;">
+            <div class="card animate-on-scroll" style="max-width: 600px; margin: 0 auto;">
                 <div class="progress-container">
                     <div class="progress-label">
                         <span data-i18n="languages.lang1">Italiano</span>
                         <span data-i18n="languages.lang1.level">Madrelingua</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 100%;"></div>
+                        <div class="progress-fill" data-width="100%"></div>
                     </div>
                 </div>
                 
@@ -1576,7 +1706,7 @@
                         <span>B1</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 70%;"></div>
+                        <div class="progress-fill" data-width="70%"></div>
                     </div>
                 </div>
                 
@@ -1586,7 +1716,7 @@
                         <span>A1</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 30%;"></div>
+                        <div class="progress-fill" data-width="30%"></div>
                     </div>
                 </div>
             </div>
@@ -1594,7 +1724,7 @@
 
         <!-- Sezione CV Download -->
         <section id="cv">
-            <div class="cv-download fade-in">
+            <div class="cv-download animate-on-scroll">
                 <h3 data-i18n="cv.title">Curriculum Vitae</h3>
                 <p data-i18n="cv.description">Scarica il mio CV completo in formato PDF per maggiori dettagli sulla mia formazione ed esperienza professionale.</p>
                 <a href="CV_Marco_De_Luca.pdf" class="btn btn-primary" download>
@@ -1603,46 +1733,41 @@
             </div>
         </section>
         
-        <section id="contact">
-            <div class="section-header">
-                <h2 data-i18n="contact.title" class="fade-in">Contattami</h2>
-            </div>
-            
-            <div class="contact-form fade-in delay-1">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Nome *</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Il tuo nome completo">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email *</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="La tua email">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject" class="form-label">Oggetto *</label>
-                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Oggetto del messaggio">
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">Messaggio *</label>
-                        <textarea id="message" name="message" class="form-control" placeholder="Scrivi il tuo messaggio qui..." minlength="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary form-submit">
-                        <i class="fas fa-paper-plane"></i> Invia Messaggio
-                    </button>
-                </form>
-                <div id="formMessage" class="form-message"></div>
-            </div>
-            
 
-        </section>
     </main>
     
     <footer>
         <div class="container">
-            <div class="social-links">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="animate-on-scroll">Form di Contatto</h3>
+                    <div class="contact-form-footer animate-on-scroll">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Il tuo nome completo *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="La tua email *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" class="form-control" placeholder="Oggetto *" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" class="form-control" placeholder="Il tuo messaggio *" minlength="10" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary form-submit">
+                                <i class="fas fa-paper-plane"></i> Invia Messaggio
+                            </button>
+                        </form>
+                        <div id="formMessage" class="form-message"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links animate-on-scroll">
                 <a href="mailto:marcodeluca99@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 <a href="mailto:marcodeluca99@pec.it" aria-label="PEC" class="pec-link">
                     <i class="fas fa-envelope"></i>
@@ -1653,7 +1778,7 @@
                 <a href="https://www.linkedin.com/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
             </div>
-            <p class="copyright" data-i18n="footer.copyright">© 2024 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.</p>
+            <p class="copyright animate-on-scroll" data-i18n="footer.copyright">© 2025 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.</p>
         </div>
     </footer>
 
@@ -1723,7 +1848,7 @@
                 'contact.title': 'Contattami',
                 'contact.email': 'Email',
                 'contact.phone': 'Telefono',
-                'footer.copyright': '© 2024 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.'
+                'footer.copyright': '© 2025 Marco De Luca. P.IVA: IT02840600692. Tutti i diritti riservati.'
             },
             'en': {
                 'name': 'Marco De Luca',
@@ -1762,7 +1887,7 @@
                 'contact.title': 'Contact Me',
                 'contact.email': 'Email',
                 'contact.phone': 'Phone',
-                'footer.copyright': '© 2024 Marco De Luca. P.IVA: IT02840600692. All rights reserved.'
+                'footer.copyright': '© 2025 Marco De Luca. P.IVA: IT02840600692. All rights reserved.'
             }
         };
         
@@ -2027,24 +2152,49 @@
             }
         }
 
-        // Animate progress bars when they come into view
-        const progressBars = document.querySelectorAll('.progress-fill');
-        
-        function animateProgressBars() {
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0';
-                
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            bar.style.width = width;
-                            observer.unobserve(entry.target);
+        // Animazione unificata per tutti gli elementi con classe animate-on-scroll
+        function initScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        
+                        // Se è una barra di progresso, anima anche quella
+                        const progressFill = entry.target.querySelector('.progress-fill');
+                        if (progressFill) {
+                            const width = progressFill.getAttribute('data-width');
+                            if (width) {
+                                progressFill.style.setProperty('--progress-width', width);
+                                setTimeout(() => {
+                                    progressFill.classList.add('animated');
+                                }, 300); // Ritardo per l'animazione della barra
+                            }
                         }
-                    });
+                        
+                        observer.unobserve(entry.target);
+                    }
                 });
-                
-                observer.observe(bar.parentElement);
+            }, { 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Animazione specifica per le barre di progresso
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            progressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                if (width) {
+                    bar.style.setProperty('--progress-width', width);
+                }
             });
         }
 
@@ -2057,31 +2207,11 @@
                 parallax.style.transform = `translateY(${speed}px)`;
             }
         }
-
-        // Smooth reveal animations for cards
-        function animateOnScroll() {
-            const cards = document.querySelectorAll('.card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                observer.observe(card);
-            });
-        }
         
         // Initialize animations when page loads
         window.addEventListener('load', () => {
             animateProgressBars();
-            animateOnScroll();
+            initScrollAnimations();
             
             // Set active link based on initial scroll position
             const event = new Event('scroll');
