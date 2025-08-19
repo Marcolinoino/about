@@ -103,6 +103,39 @@
             box-shadow: var(--shadow-hover);
         }
 
+        .toggle-btn {
+            position: relative;
+        }
+
+        .toggle-btn i {
+            font-size: 1.1rem;
+        }
+
+        .lang-indicator {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover .lang-indicator {
+            background: white;
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
         /* Header */
         header {
             padding: 120px 0 80px;
@@ -1217,7 +1250,8 @@
             <i class="fas fa-moon"></i>
         </button>
         <button id="languageToggle" class="toggle-btn" aria-label="Toggle language">
-            <span>IT</span>
+            <i class="fas fa-globe"></i>
+            <span class="lang-indicator">IT</span>
         </button>
     </div>
 
@@ -1718,10 +1752,10 @@
         function updateLanguageIcon(lang) {
             const languageToggle = document.getElementById('languageToggle');
             if (lang === 'it') {
-                languageToggle.innerHTML = '<span>IT</span>';
+                languageToggle.innerHTML = '<i class="fas fa-globe"></i><span class="lang-indicator">IT</span>';
                 languageToggle.setAttribute('aria-label', 'Switch to English');
             } else {
-                languageToggle.innerHTML = '<span>EN</span>';
+                languageToggle.innerHTML = '<i class="fas fa-globe"></i><span class="lang-indicator">EN</span>';
                 languageToggle.setAttribute('aria-label', 'Passa all\'Italiano');
             }
         }
