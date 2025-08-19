@@ -1168,45 +1168,13 @@
             color: #f56565;
         }
 
-        /* Icone per i campi del form */
+        /* Stile per i campi del form */
         .contact-form-footer .form-group {
             position: relative;
         }
 
         .contact-form-footer .form-control {
-            padding-left: 50px;
             cursor: text;
-        }
-
-        .contact-form-footer .form-group::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 0.7;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .contact-form-footer .form-group:nth-child(1)::before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
-        }
-
-        .contact-form-footer .form-group:nth-child(2)::before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
-        }
-
-        .contact-form-footer .form-group:nth-child(3)::before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/%3E%3C/svg%3E");
-        }
-
-        .contact-form-footer .form-group:nth-child(4)::before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z'/%3E%3C/svg%3E");
         }
 
         footer::before {
@@ -1430,7 +1398,7 @@
             }
             
             .contact-form-footer .form-control {
-                padding: 14px 16px 14px 45px;
+                padding: 14px 16px;
                 font-size: 0.95rem;
                 cursor: text;
             }
@@ -1530,7 +1498,7 @@
             }
             
             .contact-form-footer .form-control {
-                padding: 12px 14px 12px 40px;
+                padding: 12px 14px;
                 font-size: 0.9rem;
                 cursor: text;
             }
