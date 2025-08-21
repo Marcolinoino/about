@@ -80,16 +80,12 @@
             line-height: 1.7;
             scroll-behavior: smooth;
             overflow-x: hidden;
-            margin: 0;
-            padding: 0;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
-            position: relative;
-            z-index: 2;
         }
 
         /* Theme toggle buttons */
@@ -164,7 +160,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background: var(--secondary);
+            background: var(--gradient-primary);
             color: white;
         }
         
@@ -350,50 +346,6 @@
         section {
             padding: 100px 0;
             position: relative;
-            margin-left: calc(-50vw + 50%);
-            margin-right: calc(-50vw + 50%);
-            width: 100vw;
-        }
-        
-        /* Alternating section backgrounds */
-        section:nth-child(odd) {
-            background: var(--bg);
-        }
-        
-        section:nth-child(even) {
-            background: var(--secondary);
-            color: white;
-        }
-        
-        /* Specific section overrides */
-        #about {
-            background: var(--bg) !important;
-            color: var(--text);
-        }
-        
-        #experience {
-            background: var(--secondary) !important;
-            color: white;
-        }
-        
-        #education {
-            background: var(--bg) !important;
-            color: var(--text);
-        }
-        
-        #skills {
-            background: var(--accent) !important;
-            color: var(--text);
-        }
-        
-        #languages {
-            background: var(--accent) !important;
-            color: var(--text);
-        }
-        
-        #cv {
-            background: var(--secondary) !important;
-            color: white;
         }
         
         .section-header {
@@ -408,16 +360,6 @@
             display: inline-block;
             font-weight: 800;
             background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        /* Override for dark sections */
-        section[style*="background: var(--secondary)"], 
-        #experience h2, 
-        #cv h2 {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -457,23 +399,6 @@
             flex-direction: column;
             height: 100%;
             min-height: 300px;
-        }
-        
-        /* Cards in dark sections */
-        #experience .card,
-        #cv .card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        
-        #experience .card h3,
-        #experience .card h4,
-        #experience .card p,
-        #experience .card li,
-        #cv .card h3,
-        #cv .card p {
-            color: white;
         }
 
         .card:hover {
@@ -527,9 +452,9 @@
             text-align: center;
             margin-top: 60px;
             padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--card);
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border);
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
@@ -573,7 +498,7 @@
         .cv-download h3 {
             font-size: 2rem;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -588,7 +513,7 @@
             margin-left: auto;
             margin-right: auto;
             position: relative;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-light);
             z-index: 1;
             font-size: 1.1rem;
             line-height: 1.7;
@@ -744,12 +669,6 @@
             color: var(--text);
             align-items: center;
         }
-        
-        /* Progress labels in dark sections */
-        #experience .progress-label,
-        #cv .progress-label {
-            color: white;
-        }
 
         .progress-bar {
             height: 8px;
@@ -782,15 +701,6 @@
             box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
             position: relative;
             overflow: hidden;
-        }
-        
-        /* Skill tags in dark sections */
-        #experience .skill-tag,
-        #cv .skill-tag {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
         }
 
         .progress-fill::after {
@@ -1453,11 +1363,6 @@
                 radial-gradient(circle at 90% 80%, rgba(10, 25, 47, 0.05) 0%, transparent 20%);
             pointer-events: none;
             z-index: -1;
-        }
-        
-        /* Remove pattern from sections */
-        section::before {
-            display: none;
         }
         
         [data-theme="dark"] body::before {
