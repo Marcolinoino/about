@@ -39,20 +39,20 @@
         }
 
         [data-theme="dark"] {
-            --primary: #00d4ff;
-            --primary-light: rgba(0, 212, 255, 0.1);
-            --secondary: #e0e0e0;
-            --accent: #1e1e1e;
-            --text: #e0e0e0;
-            --text-light: #b0b0b0;
-            --bg: #121212;
-            --card: #1e1e1e;
-            --border: #333333;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 20px 40px rgba(0, 212, 255, 0.2);
-            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            --gradient-secondary: linear-gradient(135deg, #e0e0e0 0%, #b0b0b0 100%);
-            --gradient-accent: linear-gradient(135deg, #1e1e1e 0%, #333333 100%);
+            --primary: #3b82f6;
+            --primary-light: rgba(59, 130, 246, 0.1);
+            --secondary: #1e293b;
+            --accent: #f1f5f9;
+            --text: #f8fafc;
+            --text-light: #94a3b8;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --border: #334155;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            --shadow-hover: 0 20px 40px rgba(59, 130, 246, 0.15);
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            --gradient-accent: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
         }
 
         * {
@@ -193,6 +193,14 @@
             transform: scale(1.05) rotate(3deg);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        [data-theme="dark"] .profile-img {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        [data-theme="dark"] .profile-img:hover {
+            border-color: rgba(59, 130, 246, 0.6);
         }
         */
         
@@ -726,6 +734,10 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             animation: shimmer 2s infinite;
+        }
+        
+        [data-theme="dark"] .progress-fill::after {
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
         }
 
         @keyframes shimmer {
@@ -1311,6 +1323,17 @@
             opacity: 0.8;
         }
         
+        /* Miglioramenti per la dark mode */
+        [data-theme="dark"] .card {
+            background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        [data-theme="dark"] .card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+        
         /* Icone per le sezioni */
         .section-icon {
             font-size: 2.5rem;
@@ -1691,7 +1714,7 @@
         <div class="header-bg"></div>
         <div class="container">
             <!-- PROFILE IMAGE - COMMENTATO TEMPORANEAMENTE
-            <img src="https://via.placeholder.com/180x180/007bff/ffffff?text=MD" alt="Marco De Luca" class="profile-img">
+            <img src="https://via.placeholder.com/180x180/3b82f6/ffffff?text=MD" alt="Marco De Luca" class="profile-img">
             -->
             <h1 data-i18n="name">Marco De Luca</h1>
             <p class="tagline" data-i18n="tagline">Consulente IT | Sviluppatore Web | Specialista in Sicurezza Informatica</p>
