@@ -1962,6 +1962,7 @@
                         <span data-i18n="contact.subtitle">Hai un progetto in mente? Scrivimi e ti risponderò al più presto!</span>
                     </p>
                     <div class="contact-form-footer animate-on-scroll">
+                        <!-- Form con EmailJS -->
                         <form id="contactForm">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" class="form-control" data-i18n-placeholder="form.name" placeholder="Il tuo nome completo *" required>
@@ -1999,6 +2000,27 @@
         </div>
     </footer>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("RLCFhy16JGkJUc7mS");
+        })();
+    </script>
+    
+    <!-- 
+    CONFIGURAZIONE EMAILJS:
+    1. Vai su https://www.emailjs.com/ e registrati
+    2. Crea un nuovo Email Service (Gmail, Outlook, etc.)
+    3. Crea un nuovo Email Template
+    4. Sostituisci YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID con i tuoi valori
+    
+    ALTERNATIVA SEMPLICE CON FORMSPREE:
+    Sostituisci l'action del form con:
+    action="https://formspree.io/f/YOUR_FORM_ID"
+    method="POST"
+    -->
+    
     <script>
         // Check if JavaScript is enabled
         document.documentElement.classList.add('js-enabled');
@@ -2309,14 +2331,32 @@
                 return;
             }
             
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Show success message
-            showFormMessage(translations[currentLang]['form.success'], 'success');
-            
-            // Reset form
-            contactForm.reset();
+            try {
+                // Send email using EmailJS
+                const templateParams = {
+                    from_name: name,
+                    from_email: email,
+                    subject: subject,
+                    message: message,
+                    to_email: 'marcodeluca99@gmail.com'
+                };
+                
+                const response = await emailjs.send(
+                    'service_ibe4jxo',
+                    'template_gzqlcbc',
+                    templateParams
+                );
+                
+                // Show success message
+                showFormMessage(translations[currentLang]['form.success'], 'success');
+                
+                // Reset form
+                contactForm.reset();
+                
+            } catch (error) {
+                console.error('Email send error:', error);
+                showFormMessage('Errore nell\'invio del messaggio. Riprova più tardi.', 'error');
+            }
             
             // Reset button
             resetSubmitButton(originalBtnText);
