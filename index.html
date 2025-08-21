@@ -1453,6 +1453,105 @@
             border-radius: 3px;
         }
 
+        /* Mobile Carousel */
+        .mobile-carousel {
+            display: none;
+        }
+        
+        .mobile-carousel.active {
+            display: block;
+        }
+        
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--card);
+            box-shadow: var(--shadow);
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+        
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-nav.prev {
+            left: 10px;
+        }
+        
+        .carousel-nav.next {
+            right: 10px;
+        }
+        
+        .carousel-nav i {
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        [data-theme="dark"] .carousel-nav {
+            background: rgba(30, 41, 59, 0.9);
+        }
+        
+        [data-theme="dark"] .carousel-nav:hover {
+            background: rgba(30, 41, 59, 1);
+        }
+        
+        [data-theme="dark"] .carousel-nav i {
+            color: var(--text);
+        }
+
         /* Responsive */
 
         @media (min-width: 1200px) {
@@ -1462,6 +1561,14 @@
         }
 
         @media (max-width: 768px) {
+            .card-grid {
+                display: none;
+            }
+            
+            .mobile-carousel {
+                display: block;
+            }
+            
             section {
                 padding: 60px 0;
             }
@@ -1813,6 +1920,7 @@
                 <h2 data-i18n="experience.title" class="animate-on-scroll">Esperienze Professionali</h2>
             </div>
             
+            <!-- Desktop Grid -->
             <div class="card-grid">
                 <div class="card animate-on-scroll">
                     <h3 data-i18n="experience.job1.title">Consulente Informatico</h3>
@@ -1862,13 +1970,84 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Mobile Carousel -->
+            <div class="mobile-carousel" id="experienceCarousel">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="experience.job1.title">Consulente Informatico</h3>
+                                <h4>Abruzzo Progetti S.p.A. | <span data-i18n="experience.job1.date">2025 - Attuale</span></h4>
+                                <p data-i18n="experience.job1.description">
+                                    Incarico professionale nell'ambito del progetto "Rete di Servizi di Facilitazione Digitale", 
+                                    finanziato dal PNRR. Supporto alla digitalizzazione e consulenza tecnologica per 
+                                    enti pubblici e privati, avec focus su cybersecurity e innovazione digitale.
+                                </p>
+                                <div class="skills-list">
+                                    <span class="skill-tag" data-i18n="skills.consulting">Consulenza IT</span>
+                                    <span class="skill-tag" data-i18n="skills.pnrr">PNRR</span>
+                                    <span class="skill-tag" data-i18n="skills.digitalization">Digitalizzazione</span>
+                                    <span class="skill-tag" data-i18n="skills.cybersecurity">Cybersecurity</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="experience.job2.title">Junior Java Developer</h3>
+                                <h4>CGM Consulting S.r.l | 2024</h4>
+                                <p data-i18n="experience.job2.description">
+                                    Sviluppo di applicazioni enterprise con Spring Boot e Spring Security, 
+                                    implementazione di sistemi di autenticazione tramite provider esterni come Firebase, 
+                                    gestione di database MySQL con criptazione dei dati sensibili e creazione di API RESTful 
+                                    per l'integrazione di sistemi complessi.
+                                </p>
+                                <div class="skills-list">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">Spring Boot</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">REST API</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="experience.job3.title">Sviluppatore Web Freelance</h3>
+                                <h4>2024 - <span data-i18n="present">Attuale</span></h4>
+                                <p data-i18n="experience.job3.description">
+                                    Progettazione e sviluppo di siti web personalizzati utilizzando HTML, CSS, JavaScript e WordPress. 
+                                    Creazione di design responsive ottimizzati per dispositivi mobili, ottimizzazione SEO per migliorare la visibilità online dei clienti.
+                                </p>
+                                <div class="skills-list">
+                                    <span class="skill-tag">HTML/CSS</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">WordPress</span>
+                                    <span class="skill-tag">SEO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-nav prev" onclick="moveCarousel('experienceCarousel', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav next" onclick="moveCarousel('experienceCarousel', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="carousel-indicator active" onclick="goToSlide('experienceCarousel', 0)"></span>
+                    <span class="carousel-indicator" onclick="goToSlide('experienceCarousel', 1)"></span>
+                    <span class="carousel-indicator" onclick="goToSlide('experienceCarousel', 2)"></span>
+                </div>
+            </div>
         </section>
         
-        <section id="education">
+                <section id="education">
             <div class="section-header">
                 <h2 data-i18n="education.title" class="animate-on-scroll">Formazione</h2>
             </div>
             
+            <!-- Desktop Grid -->
             <div class="card-grid">
                 <div class="card animate-on-scroll">
                     <h3 data-i18n="education.edu1.title">Laurea Magistrale in Sicurezza informatica</h3>
@@ -1886,8 +2065,8 @@
                     <h4>Università degli Studi del Molise | 2018 - 2023</h4>
                     <p data-i18n="education.edu2.grade">Voto finale: 96/110</p>
                     <ul>
-                                            <li><span data-i18n="thesis">Tesi</span>: <span data-i18n="thesis.title">"Analisi di vulnerabilità in applicazioni web"</span></li>
-                    <li><span data-i18n="main.courses">Corsi principali</span>: <span data-i18n="courses.list">Programmazione, Database, Reti</span></li>
+                        <li><span data-i18n="thesis">Tesi</span>: <span data-i18n="thesis.title">"Analisi di vulnerabilità in applicazioni web"</span></li>
+                        <li><span data-i18n="main.courses">Corsi principali</span>: <span data-i18n="courses.list">Programmazione, Database, Reti</span></li>
                     </ul>
                     <div class="skills-list">
                         <span class="skill-tag" data-i18n="skills.programming">Programmazione</span>
@@ -1908,6 +2087,66 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Mobile Carousel -->
+            <div class="mobile-carousel" id="educationCarousel">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="education.edu1.title">Laurea Magistrale in Sicurezza informatica</h3>
+                                <h4>Università degli Studi del Molise | <span data-i18n="education.edu1.date">2024 - Attuale</span></h4>
+                                <p data-i18n="education.edu1.description">LM-66 - Classe delle lauree magistrali in Sicurezza informatica</p>
+                                <div class="skills-list">
+                                    <span class="skill-tag">Cybersecurity</span>
+                                    <span class="skill-tag">Ethical Hacking</span>
+                                    <span class="skill-tag">Cryptography</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="education.edu2.title">Laurea in Scienze e tecnologie informatiche</h3>
+                                <h4>Università degli Studi del Molise | 2018 - 2023</h4>
+                                <p data-i18n="education.edu2.grade">Voto finale: 96/110</p>
+                                <ul>
+                                    <li><span data-i18n="thesis">Tesi</span>: <span data-i18n="thesis.title">"Analisi di vulnerabilità in applicazioni web"</span></li>
+                                    <li><span data-i18n="main.courses">Corsi principali</span>: <span data-i18n="courses.list">Programmazione, Database, Reti</span></li>
+                                </ul>
+                                <div class="skills-list">
+                                    <span class="skill-tag" data-i18n="skills.programming">Programmazione</span>
+                                    <span class="skill-tag" data-i18n="skills.database">Database</span>
+                                    <span class="skill-tag" data-i18n="skills.networks">Reti</span>
+                                    <span class="skill-tag" data-i18n="skills.web.security">Sicurezza Web</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="education.edu3.title">Corso de programmazione Java avanzato</h3>
+                                <h4>CGM Consulting S.r.l | 2024</h4>
+                                <p data-i18n="education.edu3.description">248 ore su Spring Boot, Spring Security e best practices</p>
+                                <div class="skills-list">
+                                    <span class="skill-tag">Java EE</span>
+                                    <span class="skill-tag">Spring Framework</span>
+                                    <span class="skill-tag">Design Patterns</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-nav prev" onclick="moveCarousel('educationCarousel', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav next" onclick="moveCarousel('educationCarousel', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="carousel-indicator active" onclick="goToSlide('educationCarousel', 0)"></span>
+                    <span class="carousel-indicator" onclick="goToSlide('educationCarousel', 1)"></span>
+                    <span class="carousel-indicator" onclick="goToSlide('educationCarousel', 2)"></span>
+                </div>
+            </div>
         </section>
         
         <section id="skills" class="skills">
@@ -1915,6 +2154,7 @@
                 <h2 data-i18n="skills.title" class="animate-on-scroll">Competenze Tecniche</h2>
             </div>
             
+            <!-- Desktop Grid -->
             <div class="card-grid">
                 <div class="card animate-on-scroll">
                     <h3 data-i18n="skills.section1">Linguaggi di Programmazione</h3>
@@ -2007,6 +2247,121 @@
                             <div class="progress-fill" data-width="75%"></div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Carousel -->
+            <div class="mobile-carousel" id="skillsCarousel">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="skills.section1">Linguaggi di Programmazione</h3>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Java</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="90%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Python</span>
+                                        <span>75%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="75%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>JavaScript</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="skills.section2">Framework & Tecnologie</h3>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Spring Boot</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="85%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Angular</span>
+                                        <span>70%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="70%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Docker</span>
+                                        <span>65%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="65%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <h3 data-i18n="skills.section3">Database & Strumenti</h3>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>MySQL</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="85%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Git/GitHub</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="90%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>WordPress</span>
+                                        <span>75%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-width="75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-nav prev" onclick="moveCarousel('skillsCarousel', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav next" onclick="moveCarousel('skillsCarousel', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="carousel-indicator active" onclick="goToSlide('skillsCarousel', 0)"></span>
+                    <span class="carousel-indicator" onclick="goToSlide('skillsCarousel', 1)"></span>
+                    <span class="carousel-indicator" onclick="goToSlide('skillsCarousel', 2)"></span>
                 </div>
             </div>
         </section>
@@ -2660,6 +3015,104 @@
                 const event = new Event('scroll');
                 window.dispatchEvent(event);
             }, 50);
+        });
+
+        // Carousel functionality
+        const carousels = {};
+        
+        function initCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            
+            const track = carousel.querySelector('.carousel-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            
+            carousels[carouselId] = {
+                currentSlide: 0,
+                totalSlides: slides.length,
+                track: track,
+                indicators: indicators
+            };
+            
+            // Touch events for swipe
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+            
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            });
+            
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentX = e.touches[0].clientX;
+                const diff = startX - currentX;
+                track.style.transform = `translateX(-${carousels[carouselId].currentSlide * 100}%) translateX(-${diff}px)`;
+            });
+            
+            track.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                const diff = startX - currentX;
+                
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0 && carousels[carouselId].currentSlide < carousels[carouselId].totalSlides - 1) {
+                        moveCarousel(carouselId, 1);
+                    } else if (diff < 0 && carousels[carouselId].currentSlide > 0) {
+                        moveCarousel(carouselId, -1);
+                    } else {
+                        updateCarousel(carouselId);
+                    }
+                } else {
+                    updateCarousel(carouselId);
+                }
+            });
+        }
+        
+        function moveCarousel(carouselId, direction) {
+            const carousel = carousels[carouselId];
+            if (!carousel) return;
+            
+            carousel.currentSlide += direction;
+            
+            if (carousel.currentSlide < 0) {
+                carousel.currentSlide = carousel.totalSlides - 1;
+            } else if (carousel.currentSlide >= carousel.totalSlides) {
+                carousel.currentSlide = 0;
+            }
+            
+            updateCarousel(carouselId);
+        }
+        
+        function goToSlide(carouselId, slideIndex) {
+            const carousel = carousels[carouselId];
+            if (!carousel) return;
+            
+            carousel.currentSlide = slideIndex;
+            updateCarousel(carouselId);
+        }
+        
+        function updateCarousel(carouselId) {
+            const carousel = carousels[carouselId];
+            if (!carousel) return;
+            
+            carousel.track.style.transform = `translateX(-${carousel.currentSlide * 100}%)`;
+            
+            // Update indicators
+            carousel.indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === carousel.currentSlide);
+            });
+        }
+        
+        // Initialize carousels when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                initCarousel('experienceCarousel');
+                initCarousel('educationCarousel');
+                initCarousel('skillsCarousel');
+            }, 100);
         });
 
         // Add parallax effect on scroll
