@@ -989,7 +989,7 @@
             text-align: center;
             margin-top: 60px;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .footer-content {
@@ -997,6 +997,8 @@
             justify-content: center;
             margin-bottom: 50px;
             text-align: left;
+            position: relative;
+            z-index: 5;
         }
 
         .footer-section h3 {
@@ -1017,7 +1019,7 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
 
         /* FIX: Rimuovi gli pseudo-elementi che coprono il form */
@@ -1029,7 +1031,7 @@
         .contact-form-footer .form-group {
             margin-bottom: 24px;
             position: relative;
-            z-index: 2; /* Assicura che i campi siano sopra altri elementi */
+            z-index: 10; /* Aumenta z-index per assicurare che i campi siano sopra tutto */
         }
 
         .contact-form-footer .form-control {
@@ -1042,7 +1044,8 @@
             font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            z-index: 2;
+            z-index: 10;
+            pointer-events: auto;
         }
 
         .contact-form-footer .form-control::placeholder {
@@ -1055,6 +1058,7 @@
             border-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 8px 25px rgba(0, 0, 0, 0.15);
             transform: translateY(-2px);
+            outline: none;
         }
 
         .contact-form-footer .form-control:hover {
@@ -1175,6 +1179,7 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="b" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="100" cy="100" r="80" fill="url(%23b)"/><circle cx="900" cy="200" r="120" fill="url(%23b)"/><circle cx="300" cy="800" r="100" fill="url(%23b)"/></svg>');
             opacity: 0.3;
             z-index: 1;
+            pointer-events: none;
         }
 
         .social-links {
