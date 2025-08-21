@@ -1660,21 +1660,21 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links" id="navLinks">
-                <a href="#about" class="nav-link">Profilo</a>
-                <a href="#experience" class="nav-link">Esperienze</a>
-                <a href="#education" class="nav-link">Formazione</a>
-                <a href="#skills" class="nav-link">Competenze</a>
-                <a href="#cv" class="nav-link">CV</a>
+                <a href="#about" class="nav-link" data-i18n="nav.about">Profilo</a>
+                <a href="#experience" class="nav-link" data-i18n="nav.experience">Esperienze</a>
+                <a href="#education" class="nav-link" data-i18n="nav.education">Formazione</a>
+                <a href="#skills" class="nav-link" data-i18n="nav.skills">Competenze</a>
+                <a href="#cv" class="nav-link" data-i18n="nav.cv">CV</a>
             </div>
         </nav>
     </div>
 
     <!-- Theme/Language Toggle -->
     <div class="theme-toggle">
-        <button id="themeToggle" class="toggle-btn" aria-label="Cambia tema (chiaro/scuro)">
+        <button id="themeToggle" class="toggle-btn" data-i18n-aria-label="theme.toggle">
             <i class="fas fa-moon"></i>
         </button>
-        <button id="languageToggle" class="toggle-btn" aria-label="Cambia lingua (Italiano/Inglese)">
+        <button id="languageToggle" class="toggle-btn" data-i18n-aria-label="language.toggle">
             <i class="fas fa-globe"></i>
             <span class="lang-indicator">IT</span>
         </button>
@@ -2082,6 +2082,13 @@
                 'name': 'Marco De Luca',
                 'tagline': 'Consulente IT | Sviluppatore Web | Specialista in Sicurezza Informatica',
                 'location': 'Lanciano, Italia',
+                'nav.about': 'Profilo',
+                'nav.experience': 'Esperienze',
+                'nav.education': 'Formazione',
+                'nav.skills': 'Competenze',
+                'nav.cv': 'CV',
+                'theme.toggle': 'Cambia tema (chiaro/scuro)',
+                'language.toggle': 'Cambia lingua (Italiano/Inglese)',
                 'about.title': 'Profilo Professionale',
                 'about.description': 'Con una laurea in Informatica e un percorso di specializzazione in Sicurezza Informatica, ho sviluppato competenze solide in programmazione Java e tecnologie web. Attualmente lavoro come consulente IT e facilitatore digitale, combinando sviluppo di siti web, assistenza tecnica e supporto alla digitalizzazione. Il mio approccio si basa su metodologie strutturate e una costante attitudine all\'innovazione tecnologica.',
                 'experience.title': 'Esperienze Professionali',
@@ -2138,6 +2145,13 @@
                 'name': 'Marco De Luca',
                 'tagline': 'IT Consultant | Web Developer | Cybersecurity Specialist',
                 'location': 'Lanciano, Italy',
+                'nav.about': 'Profile',
+                'nav.experience': 'Experience',
+                'nav.education': 'Education',
+                'nav.skills': 'Skills',
+                'nav.cv': 'CV',
+                'theme.toggle': 'Toggle theme (light/dark)',
+                'language.toggle': 'Switch language (Italian/English)',
                 'about.title': 'Professional Profile',
                 'about.description': 'With a degree in Computer Science and a specialization path in Cybersecurity, I have developed solid skills in Java programming and web technologies. Currently working as an IT consultant and digital facilitator, combining web development, technical assistance and digitalization support. My approach is based on structured methodologies and a constant attitude towards technological innovation.',
                 'experience.title': 'Professional Experience',
@@ -2219,6 +2233,14 @@
                 }
             });
             
+            // Update aria-labels
+            document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+                const key = element.getAttribute('data-i18n-aria-label');
+                if (translations[lang][key]) {
+                    element.setAttribute('aria-label', translations[lang][key]);
+                }
+            });
+            
             // Update button text if it's in sending state
             const submitBtn = document.querySelector('.form-submit');
             if (submitBtn && submitBtn.innerHTML.includes('fa-spinner')) {
@@ -2233,10 +2255,8 @@
             const languageToggle = document.getElementById('languageToggle');
             if (lang === 'it') {
                 languageToggle.innerHTML = '<i class="fas fa-globe"></i><span class="lang-indicator">IT</span>';
-                languageToggle.setAttribute('aria-label', 'Switch to English');
             } else {
                 languageToggle.innerHTML = '<i class="fas fa-globe"></i><span class="lang-indicator">EN</span>';
-                languageToggle.setAttribute('aria-label', 'Passa all\'Italiano');
             }
         }
 
