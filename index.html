@@ -80,12 +80,16 @@
             line-height: 1.7;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
+            position: relative;
+            z-index: 2;
         }
 
         /* Theme toggle buttons */
@@ -346,6 +350,9 @@
         section {
             padding: 100px 0;
             position: relative;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            width: 100vw;
         }
         
         /* Alternating section backgrounds */
@@ -1446,6 +1453,11 @@
                 radial-gradient(circle at 90% 80%, rgba(10, 25, 47, 0.05) 0%, transparent 20%);
             pointer-events: none;
             z-index: -1;
+        }
+        
+        /* Remove pattern from sections */
+        section::before {
+            display: none;
         }
         
         [data-theme="dark"] body::before {
