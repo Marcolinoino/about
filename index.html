@@ -717,6 +717,7 @@
         .skill-category-header {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
             margin-bottom: 20px;
             padding-bottom: 12px;
@@ -737,6 +738,7 @@
             color: var(--text);
             font-size: 1.2rem;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .skills-grid {
@@ -748,6 +750,7 @@
         .skill-item {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
             padding: 15px;
             background: var(--bg);
@@ -758,26 +761,10 @@
             overflow: hidden;
         }
 
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--gradient-primary);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
         .skill-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(0, 123, 255, 0.1);
             border-color: var(--primary);
-        }
-
-        .skill-item:hover::before {
-            transform: scaleY(1);
         }
 
         .skill-icon {
@@ -812,6 +799,7 @@
             color: var(--text);
             font-size: 1.1rem;
             font-weight: 700;
+            text-align: center;
         }
 
         .skill-projects {
@@ -1876,6 +1864,7 @@
             .skill-category-header {
                 flex-direction: column;
                 text-align: center;
+                justify-content: center;
                 gap: 8px;
             }
 
@@ -1886,11 +1875,13 @@
 
             .skill-category-header h3 {
                 font-size: 1.1rem;
+                white-space: nowrap;
             }
 
             .skill-item {
                 flex-direction: column;
                 text-align: center;
+                justify-content: center;
                 gap: 10px;
                 padding: 12px;
             }
@@ -1907,6 +1898,7 @@
 
             .skill-content h4 {
                 font-size: 0.95rem;
+                text-align: center;
             }
         }
 
