@@ -735,7 +735,7 @@
         .skill-category-header h3 {
             margin: 0;
             color: var(--text);
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 700;
             white-space: nowrap;
         }
@@ -757,6 +757,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            min-height: 60px;
         }
 
         .skill-item:hover {
@@ -776,6 +777,7 @@
             justify-content: center;
             box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
             transition: all 0.3s ease;
+            margin: 0;
         }
 
         .skill-item:hover .skill-icon {
@@ -795,8 +797,11 @@
         .skill-content h4 {
             margin: 0;
             color: var(--text);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
         }
 
         .skill-projects {
@@ -1871,7 +1876,7 @@
             }
 
             .skill-category-header h3 {
-                font-size: 1.1rem;
+                font-size: 0.95rem;
                 white-space: nowrap;
                 display: flex;
                 align-items: center;
@@ -1897,7 +1902,7 @@
             }
 
             .skill-content h4 {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 text-align: center;
                 display: flex;
                 align-items: center;
