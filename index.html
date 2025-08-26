@@ -713,7 +713,164 @@
             left: 100%;
         }
 
-        /* Progress bars */
+        /* Nuova sezione Skills */
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .skill-category-header i {
+            font-size: 1.8rem;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+        }
+
+        .skill-category-header h3 {
+            margin: 0;
+            color: var(--text);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: var(--bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 123, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .skill-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .skill-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+
+        .skill-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .skill-content {
+            flex: 1;
+        }
+
+        .skill-content h4 {
+            margin: 0 0 8px 0;
+            color: var(--text);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .skill-content p {
+            margin: 0 0 12px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .skill-projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .project-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Dark mode adjustments */
+        [data-theme="dark"] .skill-item {
+            background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
+            border-color: rgba(59, 130, 246, 0.1);
+        }
+
+        [data-theme="dark"] .skill-item:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        [data-theme="dark"] .skill-content p {
+            color: #cbd5e1;
+        }
+
+        [data-theme="dark"] .project-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        [data-theme="dark"] .project-tag:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* Progress bars - Mantenuto per compatibilità */
         .progress-container {
             margin-bottom: 16px;
             text-align: left;
@@ -1721,6 +1878,52 @@
             .section-icon {
                 font-size: 2rem;
             }
+
+            /* Responsive per nuova sezione skills */
+            .skill-category-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .skill-category-header i {
+                font-size: 1.5rem;
+                padding: 10px;
+            }
+
+            .skill-category-header h3 {
+                font-size: 1.2rem;
+            }
+
+            .skill-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+                padding: 16px;
+            }
+
+            .skill-icon {
+                width: 45px;
+                height: 45px;
+                margin: 0 auto;
+            }
+
+            .skill-icon i {
+                font-size: 1.3rem;
+            }
+
+            .skill-content h4 {
+                font-size: 1rem;
+            }
+
+            .skill-content p {
+                font-size: 0.85rem;
+            }
+
+            .project-tag {
+                font-size: 0.7rem;
+                padding: 3px 8px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2256,96 +2459,139 @@
                     <div class="carousel-track">
                         <div class="carousel-slide">
                             <div class="card">
-                                <h3 data-i18n="skills.section1">Linguaggi di Programmazione</h3>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>Java</span>
-                                        <span>90%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="90%"></div>
-                                    </div>
+                                <div class="skill-category-header">
+                                    <i class="fas fa-code"></i>
+                                    <h3 data-i18n="skills.section1">Linguaggi di Programmazione</h3>
                                 </div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>Python</span>
-                                        <span>75%</span>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fab fa-java"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>Java</h4>
+                                            <p>Spring Boot, JPA, Design Patterns</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">CGM Consulting</span>
+                                                <span class="project-tag">Tesi Universitaria</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="75%"></div>
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fab fa-python"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>Python</h4>
+                                            <p>Data Analysis, Automation, Scripting</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">Progetti Universitari</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>JavaScript</span>
-                                        <span>80%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="80%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-slide">
-                            <div class="card">
-                                <h3 data-i18n="skills.section2">Framework & Tecnologie</h3>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>Spring Boot</span>
-                                        <span>85%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="85%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>Angular</span>
-                                        <span>70%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="70%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>Docker</span>
-                                        <span>65%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="65%"></div>
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fab fa-js-square"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>JavaScript</h4>
+                                            <p>ES6+, DOM Manipulation, AJAX</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">Siti Web Freelance</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="carousel-slide">
                             <div class="card">
-                                <h3 data-i18n="skills.section3">Database & Strumenti</h3>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>MySQL</span>
-                                        <span>85%</span>
+                                <div class="skill-category-header">
+                                    <i class="fas fa-layer-group"></i>
+                                    <h3 data-i18n="skills.section2">Framework & Tecnologie</h3>
+                                </div>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fas fa-leaf"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>Spring Boot</h4>
+                                            <p>REST API, Security, Microservices</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">CGM Consulting</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="85%"></div>
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fab fa-angular"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>Angular</h4>
+                                            <p>TypeScript, Components, Services</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">Progetti Universitari</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fab fa-docker"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>Docker</h4>
+                                            <p>Containerization, Docker Compose</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">Deployment</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>Git/GitHub</span>
-                                        <span>90%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="90%"></div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="card">
+                                <div class="skill-category-header">
+                                    <i class="fas fa-database"></i>
+                                    <h3 data-i18n="skills.section3">Database & Strumenti</h3>
                                 </div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span>WordPress</span>
-                                        <span>75%</span>
+                                <div class="skills-grid">
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fas fa-database"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>MySQL</h4>
+                                            <p>Database Design, Optimization, Security</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">CGM Consulting</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="75%"></div>
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>Git/GitHub</h4>
+                                            <p>Version Control, Collaboration, CI/CD</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">Tutti i Progetti</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-icon">
+                                            <i class="fab fa-wordpress"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h4>WordPress</h4>
+                                            <p>Theme Development, Plugins, SEO</p>
+                                            <div class="skill-projects">
+                                                <span class="project-tag">Siti Web Freelance</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
