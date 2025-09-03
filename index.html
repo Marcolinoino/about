@@ -1990,10 +1990,36 @@
                 font-size: 0.8rem;
             }
             
-            /* Miglioramenti responsive */
-            .progress-fill::after {
-                display: none; /* Nascondi le percentuali su mobile per risparmiare spazio */
+                    /* Miglioramenti responsive */
+        .progress-fill::after {
+            display: none; /* Nascondi le percentuali su mobile per risparmiare spazio */
+        }
+        
+        /* Stili per il logo nell'header */
+        .header-logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            filter: brightness(0) invert(1); /* Rende il logo bianco per contrastare con lo sfondo blu */
+        }
+        
+        /* Responsive per mobile */
+        @media (max-width: 768px) {
+            .header-logo {
+                max-width: 150px;
+                margin-bottom: 15px;
             }
+        }
+        
+        @media (max-width: 480px) {
+            .header-logo {
+                max-width: 120px;
+                margin-bottom: 12px;
+            }
+        }
         }
     </style>
     <noscript>
@@ -2058,7 +2084,7 @@
             <!-- PROFILE IMAGE - COMMENTATO TEMPORANEAMENTE
             <img src="https://via.placeholder.com/180x180/3b82f6/ffffff?text=MD" alt="Marco De Luca" class="profile-img">
             -->
-            <img src="logo_.png" alt="Marco De Luca" class="header-logo">
+            <img src="logo.svg" alt="Marco De Luca" class="header-logo">
             <p class="tagline" data-i18n="tagline">Consulente IT | Sviluppatore Web | Specialista in Sicurezza Informatica</p>
             
             <div class="contact-info">
