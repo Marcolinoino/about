@@ -57,9 +57,10 @@
         
         /* Stili per il logo nell'header */
         .header-logo {
-            max-width: 500px; /* DESKTOP: logo piccolo */
+            max-width: 500px; /* DESKTOP: logo grande */
             height: auto;
-            margin-bottom: 20px;
+            margin-top: 40px; /* Spazio sopra il logo per allontanarlo dal menu */
+            margin-bottom: 15px; /* Ridotto da 20px a 15px per bilanciare */
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -70,7 +71,12 @@
         @media (max-width: 768px) {
             .header-logo {
                 max-width: 300px; /* TABLET: logo medio */
-                margin-bottom: 15px;
+                margin-top: 35px; /* Spazio ridotto su tablet */
+                margin-bottom: 12px; /* Spazio ridotto su tablet */
+            }
+            
+            .tagline {
+                margin-bottom: 18px; /* Spazio ridotto su tablet */
             }
         }
         
@@ -78,8 +84,19 @@
         @media (max-width: 480px) {
             .header-logo {
                 max-width: 250px; /* MOBILE: logo grande */
-                margin-bottom: 12px;
+                margin-top: 30px; /* Spazio ridotto su mobile */
+                margin-bottom: 10px; /* Spazio ridotto su mobile */
             }
+        }
+        
+        /* Stili per il tagline per bilanciare la visualizzazione */
+        .tagline {
+            margin-bottom: 20px; /* Ridotto lo spazio sotto il tagline */
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
         }
 
         * {
