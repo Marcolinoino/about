@@ -1997,13 +1997,13 @@
         
         /* Stili per il logo nell'header */
         .header-logo {
-            max-width: 80px; /* DESKTOP: logo piccolo */
-            height: auto;
-            margin-bottom: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            filter: brightness(0) invert(1); /* Rende il logo bianco per contrastare con lo sfondo blu */
+            max-width: 50px !important; /* DESKTOP: logo molto piccolo - FORZATO */
+            height: auto !important;
+            margin-bottom: 20px !important;
+            display: block !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            filter: brightness(0) invert(1) !important; /* Rende il logo bianco per contrastare con lo sfondo blu */
         }
         
         /* Responsive per tablet */
@@ -2017,7 +2017,7 @@
         /* Responsive per mobile */
         @media (max-width: 480px) {
             .header-logo {
-                max-width: 150px; /* MOBILE: logo grande */
+                max-width: 250px; /* MOBILE: logo grande */
                 margin-bottom: 12px;
             }
         }
